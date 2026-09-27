@@ -1,0 +1,58 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: "1.25.x"
+      - run: make test
+      - run: make build && ./bin/hostops version
+      - name: evals (free dry mode)
+        run: make evals-dry
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: "1.25.x"
+      - name: gofmt
+        run: test -z "$(gofmt -l .)"
+      - run: go vet ./...
+      - uses: golangci/golangci-lint-action@ba0d7d2ec06a0ea1cb5fa41b2e4a3ab91d21278a # v9.3.0
+        with:
+          version: v2.5.0
+      - name: govulncheck
+        run: go run golang.org/x/vuln/cmd/govulncheck@latest ./...
+      - name: shellcheck
+        run: shellcheck scripts/*.sh evals/graders/*.sh
+      - name: fixtures are reproducible in shape
+        run: go run ./internal/testhost/genfixtures -out "$RUNNER_TEMP/hosts" && diff <(cd testdata/hosts && find . -type f ! -name '*.pem' ! -name '*.gz' ! -name '*.cer' ! -name '*.after' | sort) <(cd "$RUNNER_TEMP/hosts" && find . -type f ! -name '*.pem' ! -name '*.gz' ! -name '*.cer' ! -name '*.after' | sort)
+
+  almalinux:
+    runs-on: ubuntu-latest
+    container: almalinux:9
+    steps:
+      - run: dnf -y install git make tar gzip sudo systemd python3 diffutils findutils
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: "1.25.x"
+      - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - run: make build
+      - name: install unit + hardening assertions
+        run: bash scripts/assert-hardening.sh
+      - run: go test -count=1 ./...

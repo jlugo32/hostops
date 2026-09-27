@@ -1,0 +1,44 @@
+# hostops read-only sidecar: runs the baseline and site checks on a timer and
+# logs JSON to the journal (journalctl -u hostops). It never writes to the
+# host: --read-only makes the binary refuse every write command, and the
+# sandbox below makes the filesystem read-only except the audit state dir.
+[Unit]
+Description=hostops read-only host checks
+Documentation=https://github.com/jlugo32/hostops/blob/main/docs/threat-model.md
+After=network-online.target lsws.service mariadb.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/hostops --read-only --json baseline check
+ExecStart=/usr/bin/hostops --read-only --json sites check
+# Findings exit 5; that is a report, not a unit failure.
+SuccessExitStatus=5
+Environment=HOSTOPS_AUDIT_LOG=/var/lib/hostops/audit.jsonl
+StateDirectory=hostops
+StateDirectoryMode=0700
+
+# --- sandbox (NSA/CISA AA23-278A #2, #10) ---
+NoNewPrivileges=yes
+ProtectSystem=strict
+ReadWritePaths=/var/lib/hostops
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectHome=read-only
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+RestrictSUIDSGID=yes
+RestrictRealtime=yes
+RestrictNamespaces=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources @mount @reboot @swap @module @raw-io @obsolete @debug @cpu-emulation
+SystemCallArchitectures=native
+CapabilityBoundingSet=CAP_DAC_READ_SEARCH
+AmbientCapabilities=
+UMask=0077

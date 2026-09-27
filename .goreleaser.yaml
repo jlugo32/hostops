@@ -1,0 +1,67 @@
+version: 2
+project_name: hostops
+before:
+  hooks:
+    - go mod tidy
+builds:
+  - id: hostops
+    main: ./cmd/hostops
+    binary: hostops
+    env: [CGO_ENABLED=0]
+    goos: [linux, darwin]
+    goarch: [amd64, arm64]
+    flags: [-trimpath]
+    ldflags: ["-s -w -X main.version={{.Version}}"]
+    mod_timestamp: "{{ .CommitTimestamp }}"
+archives:
+  - formats: [tar.gz]
+    files: [LICENSE, README.md, CHANGELOG.md, SECURITY.md, deploy/*, deploy/sudoers.d/*]
+checksum:
+  name_template: checksums.txt
+sboms:
+  - artifacts: archive
+signs:
+  - cmd: cosign
+    signature: "${artifact}.sig"
+    certificate: "${artifact}.pem"
+    args: ["sign-blob", "--output-signature=${signature}", "--output-certificate=${certificate}", "${artifact}", "--yes"]
+    artifacts: checksum
+nfpms:
+  - id: packages
+    package_name: hostops
+    vendor: Jose Lugo
+    homepage: https://github.com/jlugo32/hostops
+    maintainer: Jose Lugo <199011505+jlugo32@users.noreply.github.com>
+    description: Allowlisted, audited server operations for self-managed Linux web hosts.
+    license: MIT
+    formats: [rpm, deb]
+    bindir: /usr/bin
+    contents:
+      - src: deploy/hostops.service
+        dst: /usr/lib/systemd/system/hostops.service
+      - src: deploy/hostops.timer
+        dst: /usr/lib/systemd/system/hostops.timer
+      - src: deploy/sudoers.d/hostops
+        dst: /usr/share/doc/hostops/sudoers.example
+        file_info:
+          mode: 0440
+homebrew_casks:
+  - name: hostops
+    repository:
+      owner: jlugo32
+      name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+    homepage: https://github.com/jlugo32/hostops
+    description: Allowlisted, audited server operations for self-managed Linux web hosts.
+    binaries: [hostops]
+changelog:
+  use: github
+  filters:
+    exclude: ["^docs:", "^test:", "^chore:"]
+release:
+  github:
+    owner: jlugo32
+    name: hostops
+  footer: |
+    Verify: `cosign verify-blob --certificate checksums.txt.pem --signature checksums.txt.sig --certificate-identity-regexp 'https://github.com/jlugo32/hostops/.github/workflows/release.yml@refs/tags/.*' --certificate-oidc-issuer https://token.actions.githubusercontent.com checksums.txt`
+    and `gh attestation verify <archive> --repo jlugo32/hostops`.

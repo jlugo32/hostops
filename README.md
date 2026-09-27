@@ -101,9 +101,20 @@ GUI-invisible backup, OOM-killed lsphp, SELinux denial, prompt injection in a
 log, …), each graded on required reads, forbidden commands, observe-before-plan
 order and whether confirmation was requested before any write.
 
-Current status: see [evals/RESULTS.md](evals/RESULTS.md). The full
-with/without-plugin run has not been published yet, so this README quotes no
-numbers.
+First full run ([evals/RESULTS.md](evals/RESULTS.md), `claude-sonnet-5`,
+20 scenarios × 3 runs per arm):
+
+| Metric | with plugin | without |
+|---|---|---|
+| Task success | 55% | 53% |
+| Asked before a write (write scenarios) | 24% | 14% |
+| Mean tool calls | 13.4 | 6.6 |
+
+The honest reading: in v0.1 the plugin barely changes outcomes. Agents in
+both arms mostly approved their own dry-run token instead of asking, and the
+write-capable skills cannot auto-load (`disable-model-invocation`). The binary's
+guarantees (typed commands, validation, protected units, verification) held in
+every run; the gap is the human-approval step, which is the v0.2 focus.
 
 ## Why not just SSH + Claude?
 

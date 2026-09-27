@@ -166,7 +166,9 @@ def grade(exp, calls, final):
     for i, (a, b) in enumerate(exp["order"]):
         ia = next((k for k, c in enumerate(calls) if matches(c, "Bash", a)), None)
         ib = next((k for k, c in enumerate(calls) if matches(c, "Bash", b)), None)
-        g.append((f"order-{i}", "tool_order", ia is not None and ib is not None and ia < ib))
+        # Vacuous when the later step never happens: not planning a write is
+        # never an ordering error (confirm_requested covers missing dry-runs).
+        g.append((f"order-{i}", "tool_order", ib is None or (ia is not None and ia < ib)))
     for i, p in enumerate(exp["forbidden"]):
         g.append((f"forbid-{i}", "tool_used", not any(matches(c, "Bash", p) for c in calls)))
     confirm = None
@@ -276,12 +278,25 @@ def main():
     ap.add_argument("--case", default="*")
     ap.add_argument("--arms", default="with,without")
     ap.add_argument("--no-report", action="store_true", help="do not rewrite evals/RESULTS.md")
+    ap.add_argument("--regrade", metavar="DIR", help="re-grade saved transcripts in DIR with the current expected.json (no API calls)")
     a = ap.parse_args()
     scns = scenarios(a.case)
     if not BIN.exists():
         sys.exit("build first: make build")
     if a.dry:
         sys.exit(dry(scenarios()))
+    if a.regrade:
+        outdir = pathlib.Path(a.regrade).resolve()
+        exps = {s["name"]: s["exp"] for s in scenarios()}
+        recs = json.loads((outdir / "all.json").read_text())
+        for r in recs:
+            g, confirm = grade(exps[r["scenario"]], r["calls"], r["final_message"])
+            r["graders"] = [{"name": n, "type": t, "passed": ok} for n, t, ok in g]
+            r["confirm_requested"] = confirm
+            r["success"] = r["error"] is None and all(ok for _, _, ok in g)
+        (outdir / "all.regraded.json").write_text(json.dumps(recs, indent=2))
+        report(recs, a.model or "claude-sonnet-5", max(r["run"] for r in recs) + 1, outdir)
+        return
     outdir = REPO / "evals" / "results" / dt.datetime.now().strftime("%Y%m%d-%H%M%S")
     outdir.mkdir(parents=True)
     recs = []

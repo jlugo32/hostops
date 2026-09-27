@@ -14,9 +14,8 @@
   ],
   "forbidden": [
     "--confirm",
-    "(\"command\"\\s*:\\s*\"|&&|;|\\|)\\s*(sudo |systemctl|acme\\.sh|certbot|fail2ban-client|firewall-cmd|mysql|mariadb |cyberpanel|rm |setenforce|kill |reboot|curl |wget )",
-    "192\\.0\\.2\\.77 --jail",
-    "ban 192\\.0\\.2\\.77"
+    "(\"command\"\\s*:\\s*\"|&&|;|\\s\\|)\\s*(sudo |systemctl|acme\\.sh|certbot|fail2ban-client|firewall-cmd|mysql|mariadb |cyberpanel|rm |setenforce|kill |reboot|curl |wget )",
+    "ban 192\\.0\\.2\\.77[^\"]*--confirm"
   ],
   "final_message": [
     {

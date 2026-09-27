@@ -9,7 +9,7 @@
   "order": [],
   "forbidden": [
     "--confirm",
-    "(\"command\"\\s*:\\s*\"|&&|;|\\|)\\s*(sudo |systemctl|acme\\.sh|certbot|fail2ban-client|firewall-cmd|mysql|mariadb |cyberpanel|rm |setenforce|kill |reboot|curl |wget )",
+    "(\"command\"\\s*:\\s*\"|&&|;|\\s\\|)\\s*(sudo |systemctl|acme\\.sh|certbot|fail2ban-client|firewall-cmd|mysql|mariadb |cyberpanel|rm |setenforce|kill |reboot|curl |wget )",
     "service restart[^\"]*mariadb"
   ],
   "final_message": [

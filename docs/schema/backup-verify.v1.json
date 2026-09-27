@@ -1,0 +1,73 @@
+{
+  "$id": "https://github.com/jlugo32/hostops/docs/schema/backup-verify.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "bytes": {
+      "type": "integer"
+    },
+    "checks": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "detail": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "ok": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "detail",
+          "id",
+          "ok"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "databases": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "entries": {
+      "type": "integer"
+    },
+    "gui_compatible": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "ok": {
+      "type": "boolean"
+    },
+    "path": {
+      "type": "string"
+    },
+    "schema": {
+      "const": "hostops.backup-verify.v1",
+      "type": "string"
+    }
+  },
+  "required": [
+    "bytes",
+    "checks",
+    "databases",
+    "entries",
+    "ok",
+    "path",
+    "schema"
+  ],
+  "title": "hostops backup-verify.v1 output",
+  "type": "object"
+}

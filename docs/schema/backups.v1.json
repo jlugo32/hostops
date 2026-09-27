@@ -1,0 +1,52 @@
+{
+  "$id": "https://github.com/jlugo32/hostops/docs/schema/backups.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "backups": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "age_hours": {
+            "type": "number"
+          },
+          "bytes": {
+            "type": "integer"
+          },
+          "domain": {
+            "type": "string"
+          },
+          "gui_visible": {
+            "type": "boolean"
+          },
+          "modified": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "age_hours",
+          "bytes",
+          "domain",
+          "gui_visible",
+          "modified",
+          "path"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "schema": {
+      "const": "hostops.backups.v1",
+      "type": "string"
+    }
+  },
+  "required": [
+    "backups",
+    "schema"
+  ],
+  "title": "hostops backups.v1 output",
+  "type": "object"
+}

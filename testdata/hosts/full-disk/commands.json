@@ -1,0 +1,164 @@
+{
+  "commands": {
+    "fail2ban-client status": {
+      "stdout": "Status\n|- Number of jail:\t3\n`- Jail list:\tdovecot, postfix-sasl, sshd\n"
+    },
+    "fail2ban-client status dovecot": {
+      "stdout": "Status for the jail: dovecot\n|- Filter\n|  |- Currently failed:\t0\n|  |- Total failed:\t12\n|  `- File list:\t/var/log/maillog\n`- Actions\n   |- Currently banned:\t0\n   |- Total banned:\t1\n   `- Banned IP list:\t\n"
+    },
+    "fail2ban-client status postfix-sasl": {
+      "stdout": "Status for the jail: postfix-sasl\n|- Filter\n|  |- Currently failed:\t3\n|  |- Total failed:\t510\n|  `- File list:\t/var/log/maillog\n`- Actions\n   |- Currently banned:\t0\n   |- Total banned:\t22\n   `- Banned IP list:\t\n"
+    },
+    "fail2ban-client status sshd": {
+      "stdout": "Status for the jail: sshd\n|- Filter\n|  |- Currently failed:\t0\n|  |- Total failed:\t448\n|  `- File list:\t/var/log/secure\n`- Actions\n   |- Currently banned:\t1\n   |- Total banned:\t9\n   `- Banned IP list:\t203.0.113.200\n"
+    },
+    "firewall-cmd --list-all-zones": {
+      "stdout": "block\n  target: %%REJECT%%\n  interfaces:\n  sources:\n  services:\n  ports:\n  rich rules:\npublic (default, active)\n  target: default\n  interfaces: eth0\n  sources:\n  services: dhcpv6-client http https ssh\n  ports: 8090/tcp 7080/tcp 25/tcp 587/tcp 465/tcp 993/tcp 443/udp\n  rich rules:\n"
+    },
+    "firewall-cmd --state": {
+      "stdout": "running\n"
+    },
+    "getenforce": {
+      "stdout": "Permissive\n"
+    },
+    "journalctl --no-pager -o json -n 100": {
+      "stdout": "{\"MESSAGE\":\"[ERROR] [UDS://tmp/lshttpd/shop.sock] write error: No space left on device\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"lsws\",\"_SYSTEMD_UNIT\":\"lsws.service\",\"__REALTIME_TIMESTAMP\":\"1790509440000000\"}\n{\"MESSAGE\":\"[ERROR] mariadbd: Error writing file './shop_db/orders.MAI' (Errcode: 28 \\\"No space left on device\\\")\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"mariadb\",\"_SYSTEMD_UNIT\":\"mariadb.service\",\"__REALTIME_TIMESTAMP\":\"1790509500000001\"}\n"
+    },
+    "journalctl --no-pager -o json -n 100 -p err": {
+      "stdout": "{\"MESSAGE\":\"[ERROR] [UDS://tmp/lshttpd/shop.sock] write error: No space left on device\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"lsws\",\"_SYSTEMD_UNIT\":\"lsws.service\",\"__REALTIME_TIMESTAMP\":\"1790509440000000\"}\n{\"MESSAGE\":\"[ERROR] mariadbd: Error writing file './shop_db/orders.MAI' (Errcode: 28 \\\"No space left on device\\\")\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"mariadb\",\"_SYSTEMD_UNIT\":\"mariadb.service\",\"__REALTIME_TIMESTAMP\":\"1790509500000001\"}\n"
+    },
+    "journalctl --no-pager -o json -n 100 -u fail2ban": {
+      "stdout": "{\"MESSAGE\":\"Started fail2ban.\",\"PRIORITY\":\"6\",\"SYSLOG_IDENTIFIER\":\"fail2ban\",\"_SYSTEMD_UNIT\":\"fail2ban.service\",\"__REALTIME_TIMESTAMP\":\"1790509200000000\"}\n"
+    },
+    "journalctl --no-pager -o json -n 100 -u fail2ban -p err": {},
+    "journalctl --no-pager -o json -n 100 -u lsws": {
+      "stdout": "{\"MESSAGE\":\"Started lsws.\",\"PRIORITY\":\"6\",\"SYSLOG_IDENTIFIER\":\"lsws\",\"_SYSTEMD_UNIT\":\"lsws.service\",\"__REALTIME_TIMESTAMP\":\"1790509200000000\"}\n"
+    },
+    "journalctl --no-pager -o json -n 100 -u lsws -p err": {},
+    "journalctl --no-pager -o json -n 100 -u mariadb": {
+      "stdout": "{\"MESSAGE\":\"[ERROR] mariadbd: Error writing file './shop_db/orders.MAI' (Errcode: 28 \\\"No space left on device\\\")\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"mariadb\",\"_SYSTEMD_UNIT\":\"mariadb.service\",\"__REALTIME_TIMESTAMP\":\"1790509500000000\"}\n{\"MESSAGE\":\"[Warning] Disk is full writing './binlog.000213' (Errcode: 28 \\\"No space left on device\\\"). Waiting for someone to free space...\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"mariadb\",\"_SYSTEMD_UNIT\":\"mariadb.service\",\"__REALTIME_TIMESTAMP\":\"1790509560000001\"}\n"
+    },
+    "journalctl --no-pager -o json -n 100 -u mariadb -p err": {
+      "stdout": "{\"MESSAGE\":\"[ERROR] mariadbd: Error writing file './shop_db/orders.MAI' (Errcode: 28 \\\"No space left on device\\\")\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"mariadb\",\"_SYSTEMD_UNIT\":\"mariadb.service\",\"__REALTIME_TIMESTAMP\":\"1790509500000000\"}\n{\"MESSAGE\":\"[Warning] Disk is full writing './binlog.000213' (Errcode: 28 \\\"No space left on device\\\"). Waiting for someone to free space...\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"mariadb\",\"_SYSTEMD_UNIT\":\"mariadb.service\",\"__REALTIME_TIMESTAMP\":\"1790509560000001\"}\n"
+    },
+    "journalctl --no-pager -o json -n 100 -u postfix": {
+      "stdout": "{\"MESSAGE\":\"Started postfix.\",\"PRIORITY\":\"6\",\"SYSLOG_IDENTIFIER\":\"postfix\",\"_SYSTEMD_UNIT\":\"postfix.service\",\"__REALTIME_TIMESTAMP\":\"1790509200000000\"}\n"
+    },
+    "journalctl --no-pager -o json -n 100 -u postfix -p err": {},
+    "journalctl --no-pager -o json -n 100 -u sshd": {
+      "stdout": "{\"MESSAGE\":\"Started sshd.\",\"PRIORITY\":\"6\",\"SYSLOG_IDENTIFIER\":\"sshd\",\"_SYSTEMD_UNIT\":\"sshd.service\",\"__REALTIME_TIMESTAMP\":\"1790509200000000\"}\n"
+    },
+    "journalctl --no-pager -o json -n 100 -u sshd -p err": {},
+    "journalctl --no-pager -o json -n 200": {
+      "stdout": "{\"MESSAGE\":\"[ERROR] [UDS://tmp/lshttpd/shop.sock] write error: No space left on device\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"lsws\",\"_SYSTEMD_UNIT\":\"lsws.service\",\"__REALTIME_TIMESTAMP\":\"1790509440000000\"}\n{\"MESSAGE\":\"[ERROR] mariadbd: Error writing file './shop_db/orders.MAI' (Errcode: 28 \\\"No space left on device\\\")\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"mariadb\",\"_SYSTEMD_UNIT\":\"mariadb.service\",\"__REALTIME_TIMESTAMP\":\"1790509500000001\"}\n"
+    },
+    "journalctl --no-pager -o json -n 200 -p err": {
+      "stdout": "{\"MESSAGE\":\"[ERROR] [UDS://tmp/lshttpd/shop.sock] write error: No space left on device\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"lsws\",\"_SYSTEMD_UNIT\":\"lsws.service\",\"__REALTIME_TIMESTAMP\":\"1790509440000000\"}\n{\"MESSAGE\":\"[ERROR] mariadbd: Error writing file './shop_db/orders.MAI' (Errcode: 28 \\\"No space left on device\\\")\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"mariadb\",\"_SYSTEMD_UNIT\":\"mariadb.service\",\"__REALTIME_TIMESTAMP\":\"1790509500000001\"}\n"
+    },
+    "journalctl --no-pager -o json -n 200 -u fail2ban": {
+      "stdout": "{\"MESSAGE\":\"Started fail2ban.\",\"PRIORITY\":\"6\",\"SYSLOG_IDENTIFIER\":\"fail2ban\",\"_SYSTEMD_UNIT\":\"fail2ban.service\",\"__REALTIME_TIMESTAMP\":\"1790509200000000\"}\n"
+    },
+    "journalctl --no-pager -o json -n 200 -u fail2ban -p err": {},
+    "journalctl --no-pager -o json -n 200 -u lsws": {
+      "stdout": "{\"MESSAGE\":\"Started lsws.\",\"PRIORITY\":\"6\",\"SYSLOG_IDENTIFIER\":\"lsws\",\"_SYSTEMD_UNIT\":\"lsws.service\",\"__REALTIME_TIMESTAMP\":\"1790509200000000\"}\n"
+    },
+    "journalctl --no-pager -o json -n 200 -u lsws -p err": {},
+    "journalctl --no-pager -o json -n 200 -u mariadb": {
+      "stdout": "{\"MESSAGE\":\"[ERROR] mariadbd: Error writing file './shop_db/orders.MAI' (Errcode: 28 \\\"No space left on device\\\")\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"mariadb\",\"_SYSTEMD_UNIT\":\"mariadb.service\",\"__REALTIME_TIMESTAMP\":\"1790509500000000\"}\n{\"MESSAGE\":\"[Warning] Disk is full writing './binlog.000213' (Errcode: 28 \\\"No space left on device\\\"). Waiting for someone to free space...\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"mariadb\",\"_SYSTEMD_UNIT\":\"mariadb.service\",\"__REALTIME_TIMESTAMP\":\"1790509560000001\"}\n"
+    },
+    "journalctl --no-pager -o json -n 200 -u mariadb -p err": {
+      "stdout": "{\"MESSAGE\":\"[ERROR] mariadbd: Error writing file './shop_db/orders.MAI' (Errcode: 28 \\\"No space left on device\\\")\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"mariadb\",\"_SYSTEMD_UNIT\":\"mariadb.service\",\"__REALTIME_TIMESTAMP\":\"1790509500000000\"}\n{\"MESSAGE\":\"[Warning] Disk is full writing './binlog.000213' (Errcode: 28 \\\"No space left on device\\\"). Waiting for someone to free space...\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"mariadb\",\"_SYSTEMD_UNIT\":\"mariadb.service\",\"__REALTIME_TIMESTAMP\":\"1790509560000001\"}\n"
+    },
+    "journalctl --no-pager -o json -n 200 -u postfix": {
+      "stdout": "{\"MESSAGE\":\"Started postfix.\",\"PRIORITY\":\"6\",\"SYSLOG_IDENTIFIER\":\"postfix\",\"_SYSTEMD_UNIT\":\"postfix.service\",\"__REALTIME_TIMESTAMP\":\"1790509200000000\"}\n"
+    },
+    "journalctl --no-pager -o json -n 200 -u postfix -p err": {},
+    "journalctl --no-pager -o json -n 200 -u sshd": {
+      "stdout": "{\"MESSAGE\":\"Started sshd.\",\"PRIORITY\":\"6\",\"SYSLOG_IDENTIFIER\":\"sshd\",\"_SYSTEMD_UNIT\":\"sshd.service\",\"__REALTIME_TIMESTAMP\":\"1790509200000000\"}\n"
+    },
+    "journalctl --no-pager -o json -n 200 -u sshd -p err": {},
+    "journalctl --no-pager -o json -n 50": {
+      "stdout": "{\"MESSAGE\":\"[ERROR] [UDS://tmp/lshttpd/shop.sock] write error: No space left on device\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"lsws\",\"_SYSTEMD_UNIT\":\"lsws.service\",\"__REALTIME_TIMESTAMP\":\"1790509440000000\"}\n{\"MESSAGE\":\"[ERROR] mariadbd: Error writing file './shop_db/orders.MAI' (Errcode: 28 \\\"No space left on device\\\")\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"mariadb\",\"_SYSTEMD_UNIT\":\"mariadb.service\",\"__REALTIME_TIMESTAMP\":\"1790509500000001\"}\n"
+    },
+    "journalctl --no-pager -o json -n 50 -p err": {
+      "stdout": "{\"MESSAGE\":\"[ERROR] [UDS://tmp/lshttpd/shop.sock] write error: No space left on device\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"lsws\",\"_SYSTEMD_UNIT\":\"lsws.service\",\"__REALTIME_TIMESTAMP\":\"1790509440000000\"}\n{\"MESSAGE\":\"[ERROR] mariadbd: Error writing file './shop_db/orders.MAI' (Errcode: 28 \\\"No space left on device\\\")\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"mariadb\",\"_SYSTEMD_UNIT\":\"mariadb.service\",\"__REALTIME_TIMESTAMP\":\"1790509500000001\"}\n"
+    },
+    "journalctl --no-pager -o json -n 50 -u fail2ban": {
+      "stdout": "{\"MESSAGE\":\"Started fail2ban.\",\"PRIORITY\":\"6\",\"SYSLOG_IDENTIFIER\":\"fail2ban\",\"_SYSTEMD_UNIT\":\"fail2ban.service\",\"__REALTIME_TIMESTAMP\":\"1790509200000000\"}\n"
+    },
+    "journalctl --no-pager -o json -n 50 -u fail2ban -p err": {},
+    "journalctl --no-pager -o json -n 50 -u lsws": {
+      "stdout": "{\"MESSAGE\":\"Started lsws.\",\"PRIORITY\":\"6\",\"SYSLOG_IDENTIFIER\":\"lsws\",\"_SYSTEMD_UNIT\":\"lsws.service\",\"__REALTIME_TIMESTAMP\":\"1790509200000000\"}\n"
+    },
+    "journalctl --no-pager -o json -n 50 -u lsws -p err": {},
+    "journalctl --no-pager -o json -n 50 -u mariadb": {
+      "stdout": "{\"MESSAGE\":\"[ERROR] mariadbd: Error writing file './shop_db/orders.MAI' (Errcode: 28 \\\"No space left on device\\\")\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"mariadb\",\"_SYSTEMD_UNIT\":\"mariadb.service\",\"__REALTIME_TIMESTAMP\":\"1790509500000000\"}\n{\"MESSAGE\":\"[Warning] Disk is full writing './binlog.000213' (Errcode: 28 \\\"No space left on device\\\"). Waiting for someone to free space...\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"mariadb\",\"_SYSTEMD_UNIT\":\"mariadb.service\",\"__REALTIME_TIMESTAMP\":\"1790509560000001\"}\n"
+    },
+    "journalctl --no-pager -o json -n 50 -u mariadb -p err": {
+      "stdout": "{\"MESSAGE\":\"[ERROR] mariadbd: Error writing file './shop_db/orders.MAI' (Errcode: 28 \\\"No space left on device\\\")\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"mariadb\",\"_SYSTEMD_UNIT\":\"mariadb.service\",\"__REALTIME_TIMESTAMP\":\"1790509500000000\"}\n{\"MESSAGE\":\"[Warning] Disk is full writing './binlog.000213' (Errcode: 28 \\\"No space left on device\\\"). Waiting for someone to free space...\",\"PRIORITY\":\"3\",\"SYSLOG_IDENTIFIER\":\"mariadb\",\"_SYSTEMD_UNIT\":\"mariadb.service\",\"__REALTIME_TIMESTAMP\":\"1790509560000001\"}\n"
+    },
+    "journalctl --no-pager -o json -n 50 -u postfix": {
+      "stdout": "{\"MESSAGE\":\"Started postfix.\",\"PRIORITY\":\"6\",\"SYSLOG_IDENTIFIER\":\"postfix\",\"_SYSTEMD_UNIT\":\"postfix.service\",\"__REALTIME_TIMESTAMP\":\"1790509200000000\"}\n"
+    },
+    "journalctl --no-pager -o json -n 50 -u postfix -p err": {},
+    "journalctl --no-pager -o json -n 50 -u sshd": {
+      "stdout": "{\"MESSAGE\":\"Started sshd.\",\"PRIORITY\":\"6\",\"SYSLOG_IDENTIFIER\":\"sshd\",\"_SYSTEMD_UNIT\":\"sshd.service\",\"__REALTIME_TIMESTAMP\":\"1790509200000000\"}\n"
+    },
+    "journalctl --no-pager -o json -n 50 -u sshd -p err": {},
+    "mariadb --batch --skip-column-names -e SELECT @@slow_query_log, @@slow_query_log_file, @@long_query_time, @@datadir": {
+      "stdout": "1\tslow.log\t2.000000\t/var/lib/mysql/\n"
+    },
+    "mariadb --batch --skip-column-names -e SELECT table_schema, COALESCE(SUM(data_length+index_length),0), COALESCE(SUM(data_free),0), COUNT(*) FROM information_schema.tables GROUP BY table_schema ORDER BY 2 DESC": {
+      "stdout": "shop_db\t2147483648\t10485760\t48\nblog_wp\t104857600\t0\t12\nsite_main\t8388608\t0\t9\nmysql\t2621440\t0\t31\n"
+    },
+    "mariadb --batch --skip-column-names -e SHOW DATABASES": {
+      "stdout": "blog_wp\ninformation_schema\nmysql\nperformance_schema\nshop_db\nsite_main\nsys\n"
+    },
+    "systemctl is-active crond": {
+      "stdout": "active\n"
+    },
+    "systemctl is-active fail2ban": {
+      "stdout": "active\n"
+    },
+    "systemctl is-active firewalld": {
+      "stdout": "active\n"
+    },
+    "systemctl is-active lsws": {
+      "stdout": "active\n"
+    },
+    "systemctl is-active mariadb": {
+      "stdout": "active\n"
+    },
+    "systemctl is-active postfix": {
+      "stdout": "active\n"
+    },
+    "systemctl is-active sshd": {
+      "stdout": "active\n"
+    },
+    "systemctl is-enabled dnf-automatic.timer": {
+      "stdout": "enabled\n"
+    },
+    "systemctl reload lsws": {},
+    "systemctl show crond --no-pager --property=Id,LoadState,ActiveState,SubState,Result,MainPID,NRestarts,ExecMainStartTimestamp,MemoryCurrent,UnitFileState,Description": {
+      "stdout": "Id=crond.service\nLoadState=loaded\nActiveState=active\nSubState=running\nResult=success\nMainPID=4242\nNRestarts=0\nExecMainStartTimestamp=Sun 2026-09-27 08:00:00 UTC\nMemoryCurrent=412332032\nUnitFileState=enabled\nDescription=crond\n"
+    },
+    "systemctl show fail2ban --no-pager --property=Id,LoadState,ActiveState,SubState,Result,MainPID,NRestarts,ExecMainStartTimestamp,MemoryCurrent,UnitFileState,Description": {
+      "stdout": "Id=fail2ban.service\nLoadState=loaded\nActiveState=active\nSubState=running\nResult=success\nMainPID=4242\nNRestarts=0\nExecMainStartTimestamp=Sun 2026-09-27 08:00:00 UTC\nMemoryCurrent=412332032\nUnitFileState=enabled\nDescription=fail2ban\n"
+    },
+    "systemctl show firewalld --no-pager --property=Id,LoadState,ActiveState,SubState,Result,MainPID,NRestarts,ExecMainStartTimestamp,MemoryCurrent,UnitFileState,Description": {
+      "stdout": "Id=firewalld.service\nLoadState=loaded\nActiveState=active\nSubState=running\nResult=success\nMainPID=4242\nNRestarts=0\nExecMainStartTimestamp=Sun 2026-09-27 08:00:00 UTC\nMemoryCurrent=412332032\nUnitFileState=enabled\nDescription=firewalld\n"
+    },
+    "systemctl show lsws --no-pager --property=Id,LoadState,ActiveState,SubState,Result,MainPID,NRestarts,ExecMainStartTimestamp,MemoryCurrent,UnitFileState,Description": {
+      "stdout": "Id=lsws.service\nLoadState=loaded\nActiveState=active\nSubState=running\nResult=success\nMainPID=4242\nNRestarts=0\nExecMainStartTimestamp=Sun 2026-09-27 08:00:00 UTC\nMemoryCurrent=412332032\nUnitFileState=enabled\nDescription=lsws\n"
+    },
+    "systemctl show mariadb --no-pager --property=Id,LoadState,ActiveState,SubState,Result,MainPID,NRestarts,ExecMainStartTimestamp,MemoryCurrent,UnitFileState,Description": {
+      "stdout": "Id=mariadb.service\nLoadState=loaded\nActiveState=active\nSubState=running\nResult=success\nMainPID=4242\nNRestarts=0\nExecMainStartTimestamp=Sun 2026-09-27 08:00:00 UTC\nMemoryCurrent=412332032\nUnitFileState=enabled\nDescription=mariadb\n"
+    },
+    "systemctl show postfix --no-pager --property=Id,LoadState,ActiveState,SubState,Result,MainPID,NRestarts,ExecMainStartTimestamp,MemoryCurrent,UnitFileState,Description": {
+      "stdout": "Id=postfix.service\nLoadState=loaded\nActiveState=active\nSubState=running\nResult=success\nMainPID=4242\nNRestarts=0\nExecMainStartTimestamp=Sun 2026-09-27 08:00:00 UTC\nMemoryCurrent=412332032\nUnitFileState=enabled\nDescription=postfix\n"
+    },
+    "systemctl show sshd --no-pager --property=Id,LoadState,ActiveState,SubState,Result,MainPID,NRestarts,ExecMainStartTimestamp,MemoryCurrent,UnitFileState,Description": {
+      "stdout": "Id=sshd.service\nLoadState=loaded\nActiveState=active\nSubState=running\nResult=success\nMainPID=4242\nNRestarts=0\nExecMainStartTimestamp=Sun 2026-09-27 08:00:00 UTC\nMemoryCurrent=412332032\nUnitFileState=enabled\nDescription=sshd\n"
+    }
+  }
+}

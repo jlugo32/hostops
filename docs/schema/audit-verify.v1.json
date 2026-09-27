@@ -1,0 +1,37 @@
+{
+  "$id": "https://github.com/jlugo32/hostops/docs/schema/audit-verify.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "entries": {
+      "type": "integer"
+    },
+    "first_bad_line": {
+      "type": "integer"
+    },
+    "head_sha256": {
+      "type": "string"
+    },
+    "ok": {
+      "type": "boolean"
+    },
+    "path": {
+      "type": "string"
+    },
+    "reason": {
+      "type": "string"
+    },
+    "schema": {
+      "const": "hostops.audit-verify.v1",
+      "type": "string"
+    }
+  },
+  "required": [
+    "entries",
+    "ok",
+    "path",
+    "schema"
+  ],
+  "title": "hostops audit-verify.v1 output",
+  "type": "object"
+}

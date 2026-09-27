@@ -1,0 +1,30 @@
+# stdout=data, stderr=diagnostics; JSON when not a TTY
+exec hostops sites list
+stdout '^\{'
+! stderr .
+
+! exec hostops sites get nosuch.example
+! stdout .
+stderr '"schema": "hostops.error.v1"'
+
+exec hostops sites list --plain --no-color
+! stdout '\x1b'
+! exec hostops sites get nosuch.example --plain
+stderr '^hostops: error: '
+! stderr '\x1b'
+
+# config precedence: env beats files; unknown config keys are refused
+env HOSTOPS_SYSTEM_CONFIG=$WORK/sys.toml
+! exec hostops sites list
+stderr 'unknown key \\"password'
+env HOSTOPS_SYSTEM_CONFIG=$WORK/good.toml
+exec hostops sites list
+stdout '"adapter": "openlitespeed"'
+env HOSTOPS_ADAPTER=cyberpanel
+exec hostops sites list --adapter=openlitespeed
+stdout '"adapter": "openlitespeed"'
+
+-- sys.toml --
+password = "hunter2"
+-- good.toml --
+adapter = "openlitespeed"

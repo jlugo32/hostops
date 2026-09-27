@@ -1,0 +1,87 @@
+{
+  "$id": "https://github.com/jlugo32/hostops/docs/schema/db-slowlog.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "note": {
+      "type": "string"
+    },
+    "queries": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "count": {
+            "type": "integer"
+          },
+          "example": {
+            "type": "string"
+          },
+          "fingerprint": {
+            "type": "string"
+          },
+          "max_sec": {
+            "type": "number"
+          },
+          "rows_examined": {
+            "type": "integer"
+          },
+          "rows_sent": {
+            "type": "integer"
+          },
+          "schema": {
+            "type": "string"
+          },
+          "total_sec": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "count",
+          "example",
+          "fingerprint",
+          "max_sec",
+          "rows_examined",
+          "rows_sent",
+          "total_sec"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "schema": {
+      "const": "hostops.db-slowlog.v1",
+      "type": "string"
+    },
+    "settings": {
+      "additionalProperties": false,
+      "properties": {
+        "datadir": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "file": {
+          "type": "string"
+        },
+        "long_query_time": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "datadir",
+        "enabled",
+        "file",
+        "long_query_time"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "queries",
+    "schema",
+    "settings"
+  ],
+  "title": "hostops db-slowlog.v1 output",
+  "type": "object"
+}

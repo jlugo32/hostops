@@ -1,0 +1,4 @@
+192.0.2.10 - - [27/Sep/2026:10:00:00 +0000] "GET /index.html HTTP/1.1" 200 612 "-" "Mozilla/5.0 (X11; Linux x86_64)" "-"
+192.0.2.11 - alice [27/Sep/2026:10:00:01 +0000] "GET /api/v1/items?q=a%20b HTTP/1.1" 500 45 "https://example.org/x" "python-requests/2.32.3"
+192.0.2.12 - - [27/Sep/2026:10:00:02 +0000] "\x16\x03\x01" 400 157 "-" "-"
+192.0.2.13 - - [27/Sep/2026:10:00:03 +0000] "GET /quote\"inside HTTP/1.1" 404 10 "-" "UA with \"quotes\""

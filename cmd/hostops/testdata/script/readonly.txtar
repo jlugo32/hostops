@@ -1,0 +1,15 @@
+# --read-only (flag or env) refuses every write command with exit 2
+! exec hostops --read-only sites reload --dry-run
+stderr '"code": 2'
+! exec hostops cert renew example.com --read-only --dry-run
+stderr 'read-only'
+env HOSTOPS_READ_ONLY=1
+! exec hostops service restart lsws --dry-run
+stderr '"code": 2'
+! exec hostops fail2ban unban 203.0.113.200
+stderr '"code": 2'
+! exec hostops backup restore /home/backup/backup-example.com-09.27.2026_03-00-00.tar.gz
+stderr '"code": 2'
+# reads still work
+exec hostops sites list
+! exists calls.log

@@ -1,0 +1,32 @@
+{
+  "schema": "hostops.firewall.v1",
+  "running": true,
+  "zones": [
+    {
+      "zone": "public",
+      "active": true,
+      "default": true,
+      "target": "default",
+      "interfaces": [
+        "eth0"
+      ],
+      "sources": [],
+      "services": [
+        "dhcpv6-client",
+        "http",
+        "https",
+        "ssh"
+      ],
+      "ports": [
+        "8090/tcp",
+        "7080/tcp",
+        "25/tcp",
+        "587/tcp",
+        "465/tcp",
+        "993/tcp",
+        "443/udp"
+      ],
+      "rich_rules": []
+    }
+  ]
+}

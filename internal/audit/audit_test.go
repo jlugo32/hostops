@@ -61,7 +61,7 @@ func TestLogLineInjectionNeutralized(t *testing.T) {
 	l := newLog(t)
 	hostile := []string{
 		"example.com\n{\"ts\":\"forged\",\"command\":\"fake\"}",
-		"a\r\nb", "\x1b[2J\x1b[H", "nul\x00", "bidi‮evil", "ls x", string([]byte{0xff, 0xfe}),
+		"a\r\nb", "\x1b[2J\x1b[H", "nul\x00", "bidi\u202eevil", "ls\u2028x", string([]byte{0xff, 0xfe}),
 	}
 	for _, h := range hostile {
 		if _, err := l.Append(Entry{Command: "sites get", Argv: []string{"sites", "get", h}, ConfirmToken: h}); err != nil {
@@ -72,7 +72,7 @@ func TestLogLineInjectionNeutralized(t *testing.T) {
 	if n := bytes.Count(b, []byte("\n")); n != len(hostile) {
 		t.Fatalf("injection produced %d lines, want %d", n, len(hostile))
 	}
-	for _, bad := range []string{"\x1b", "\r", "\x00", "‮", " "} {
+	for _, bad := range []string{"\x1b", "\r", "\x00", "\u202e", "\u2028"} {
 		if bytes.Contains(b, []byte(bad)) {
 			t.Errorf("raw %q survived into the log", bad)
 		}
@@ -96,5 +96,20 @@ func TestLongLastLine(t *testing.T) {
 	l.Append(Entry{Command: "y", Argv: []string{"y"}})
 	if _, err := Verify(l.Path); err != nil {
 		t.Fatal(err)
+	}
+}
+
+func TestTokenUsed(t *testing.T) {
+	l := newLog(t)
+	l.Append(Entry{Command: "service restart", ConfirmToken: "aaaa", DryRun: false, ExitCode: 4})
+	if used, _ := TokenUsed(l.Path, "aaaa"); used {
+		t.Fatal("a refused attempt must not burn the token")
+	}
+	l.Append(Entry{Command: "service restart", ConfirmToken: "aaaa", ExitCode: 0})
+	if used, _ := TokenUsed(l.Path, "aaaa"); !used {
+		t.Fatal("executed token not detected")
+	}
+	if used, _ := TokenUsed(l.Path, "bbbb"); used {
+		t.Fatal("unknown token reported used")
 	}
 }

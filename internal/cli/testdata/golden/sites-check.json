@@ -1,0 +1,27 @@
+{
+  "schema": "hostops.sites-check.v1",
+  "ok": false,
+  "sites": [
+    {
+      "domain": "blog.example.org",
+      "ok": false,
+      "cert_days_left": 46,
+      "problems": [
+        "unknown directive \"docRot\" at line 1 (typo? OLS ignores it silently)",
+        "no docRoot directive"
+      ]
+    },
+    {
+      "domain": "example.com",
+      "ok": true,
+      "cert_days_left": 60,
+      "problems": []
+    },
+    {
+      "domain": "shop.example.net",
+      "ok": true,
+      "cert_days_left": 53,
+      "problems": []
+    }
+  ]
+}

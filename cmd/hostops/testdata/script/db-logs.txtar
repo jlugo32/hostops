@@ -1,0 +1,30 @@
+exec hostops db list
+stdout '"shop_db"'
+! stdout 'performance_schema'
+exec hostops db list --all
+stdout 'performance_schema'
+exec hostops db size --plain
+stdout 'shop_db'
+
+env HOSTOPS_FIXTURES=$HOSTS/mariadb-slow-query
+exec hostops db slowlog --top 1
+stdout 'select \* from orders where customer_email = \? order by created_at desc limit \?'
+stdout '"count": 40'
+
+env HOSTOPS_FIXTURES=$HOSTS/bot-flood
+exec hostops logs top example.com --top 3
+stdout '"value": "198.51.100.66"'
+stdout '"value": "/wp-login.php"'
+exec hostops logs top --file /home/example.com/logs/example.com.access_log --lines 10
+stdout '"parsed": 10'
+! exec hostops logs top --file /etc/passwd
+stderr 'outside allowed roots'
+
+exec hostops logs journal --priority err --lines 50
+exec hostops logs journal --unit lsws
+! exec hostops logs journal --priority 'err;id'
+stderr '"code": 3'
+
+exec hostops firewall list
+stdout '"zone": "public"'
+stdout '"8090/tcp"'

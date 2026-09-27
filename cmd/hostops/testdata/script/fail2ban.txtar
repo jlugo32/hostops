@@ -1,0 +1,33 @@
+exec hostops fail2ban status
+stdout '"jail": "sshd"'
+stdout '"203.0.113.200"'
+
+exec hostops fail2ban status sshd --plain
+stdout '^sshd\t0\t1\t203.0.113.200$'
+
+env HOSTOPS_FIXTURES=$HOSTS/fail2ban-self-lockout
+! exec hostops fail2ban unban 192.0.2.77
+stderr '"reason": "missing_token"'
+stderr 'remove 192.0.2.77 from jail\(s\): sshd'
+exec hostops fail2ban unban 192.0.2.77 --dry-run
+savetoken
+exec hostops fail2ban unban 192.0.2.77 --confirm=$TOKEN
+stdout '"check": "unbanned"'
+stdout '"ok": true'
+grep 'WRITE\tfail2ban-client unban 192.0.2.77' calls.log
+
+# unbanning an address that is not banned is a no-op, no token needed
+exec hostops fail2ban unban 192.0.2.1
+stdout 'nothing to do'
+
+# ban: jail required, own session refused, protected list honoured
+! exec hostops fail2ban ban 198.51.100.66 --dry-run
+stderr '--jail is required'
+env SSH_CLIENT='198.51.100.66 51000 22'
+! exec hostops fail2ban ban 198.51.100.66 --jail sshd --dry-run
+stderr 'current SSH session'
+env SSH_CLIENT=
+! exec hostops fail2ban ban 127.0.0.1 --jail sshd --dry-run
+stderr loopback
+exec hostops fail2ban ban 198.51.100.66 --jail sshd --dry-run
+stdout 'fail2ban-client'

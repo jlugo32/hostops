@@ -1,0 +1,8 @@
+{
+  "schema": "hostops.error.v1",
+  "error": {
+    "code": 3,
+    "kind": "validation",
+    "message": "no site \"nosuch.example\" in openlitespeed config"
+  }
+}

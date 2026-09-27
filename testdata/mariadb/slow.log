@@ -1,0 +1,27 @@
+/usr/sbin/mariadbd, Version: 11.8.8-MariaDB-log (MariaDB Server). started with:
+Tcp port: 3306  Unix socket: /var/lib/mysql/mysql.sock
+Time                Id Command  Argument
+# Time: 260927 11:59:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 12  Schema: shop_db  QC_hit: No
+# Query_time: 4.900000  Lock_time: 0.000123  Rows_sent: 10  Rows_examined: 2500000
+# Rows_affected: 0  Bytes_sent: 1234
+use shop_db;
+SET timestamp=1790506741;
+SELECT * FROM orders WHERE customer_email = 'a@example.com'
+  ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:59:31
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 13  Schema: shop_db  QC_hit: No
+# Query_time: 4.100000  Lock_time: 0.000100  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790506771;
+SELECT * FROM orders WHERE customer_email = 'b@example.com' ORDER BY created_at DESC LIMIT 10;
+# Query_time: 4.500000  Lock_time: 0.000100  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790506772;
+SELECT * FROM orders WHERE customer_email = 'c@example.com' ORDER BY created_at DESC LIMIT 20;
+# Time: 260927 12:00:02
+# User@Host: wp[wp] @ localhost []
+# Thread_id: 14  Schema: blog_wp  QC_hit: No
+# Query_time: 2.250000  Lock_time: 0.000050  Rows_sent: 1  Rows_examined: 91000
+SET timestamp=1790506802;
+SELECT option_value FROM wp_options WHERE autoload = 'yes';

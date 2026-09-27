@@ -1,0 +1,179 @@
+{
+  "$id": "https://github.com/jlugo32/hostops/docs/schema/cert-status.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "certs": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "disk": {
+            "anyOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "covers_domain": {
+                    "type": "boolean"
+                  },
+                  "days_left": {
+                    "type": "integer"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "issuer": {
+                    "type": "string"
+                  },
+                  "names": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "not_after": {
+                    "type": "string"
+                  },
+                  "not_before": {
+                    "type": "string"
+                  },
+                  "path": {
+                    "type": "string"
+                  },
+                  "sha256": {
+                    "type": "string"
+                  },
+                  "source": {
+                    "type": "string"
+                  },
+                  "staging": {
+                    "type": "boolean"
+                  },
+                  "subject": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "covers_domain",
+                  "days_left",
+                  "domain",
+                  "issuer",
+                  "names",
+                  "not_after",
+                  "not_before",
+                  "sha256",
+                  "source",
+                  "staging",
+                  "subject"
+                ],
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "domain": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          },
+          "served": {
+            "anyOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "covers_domain": {
+                    "type": "boolean"
+                  },
+                  "days_left": {
+                    "type": "integer"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "issuer": {
+                    "type": "string"
+                  },
+                  "names": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "not_after": {
+                    "type": "string"
+                  },
+                  "not_before": {
+                    "type": "string"
+                  },
+                  "path": {
+                    "type": "string"
+                  },
+                  "sha256": {
+                    "type": "string"
+                  },
+                  "source": {
+                    "type": "string"
+                  },
+                  "staging": {
+                    "type": "boolean"
+                  },
+                  "subject": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "covers_domain",
+                  "days_left",
+                  "domain",
+                  "issuer",
+                  "names",
+                  "not_after",
+                  "not_before",
+                  "sha256",
+                  "source",
+                  "staging",
+                  "subject"
+                ],
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "served_error": {
+            "type": "string"
+          },
+          "served_matches_disk": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "disk",
+          "domain"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "schema": {
+      "const": "hostops.cert-status.v1",
+      "type": "string"
+    }
+  },
+  "required": [
+    "certs",
+    "schema"
+  ],
+  "title": "hostops cert-status.v1 output",
+  "type": "object"
+}

@@ -1,0 +1,32 @@
+{
+  "schema": "hostops.fail2ban.v1",
+  "jails": [
+    {
+      "jail": "dovecot",
+      "currently_failed": 0,
+      "total_failed": 12,
+      "currently_banned": 0,
+      "total_banned": 1,
+      "banned_ips": []
+    },
+    {
+      "jail": "postfix-sasl",
+      "currently_failed": 3,
+      "total_failed": 510,
+      "currently_banned": 0,
+      "total_banned": 22,
+      "banned_ips": []
+    },
+    {
+      "jail": "sshd",
+      "currently_failed": 1,
+      "total_failed": 460,
+      "currently_banned": 2,
+      "total_banned": 11,
+      "banned_ips": [
+        "203.0.113.200",
+        "192.0.2.77"
+      ]
+    }
+  ]
+}

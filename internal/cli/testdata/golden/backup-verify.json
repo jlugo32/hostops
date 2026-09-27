@@ -1,0 +1,43 @@
+{
+  "schema": "hostops.backup-verify.v1",
+  "path": "/home/shop.example.net/backup/backup-shop.example.net-09.26.2026_03-00-00.tar.gz",
+  "entries": 3,
+  "bytes": 435,
+  "gui_compatible": false,
+  "checks": [
+    {
+      "id": "integrity",
+      "ok": true,
+      "detail": "3 entries read to EOF"
+    },
+    {
+      "id": "site_files",
+      "ok": true,
+      "detail": "public_html present"
+    },
+    {
+      "id": "gui_name",
+      "ok": true,
+      "detail": "name must match backup-<domain>-MM.DD.YYYY_HH-MM-SS.tar.gz"
+    },
+    {
+      "id": "gui_location",
+      "ok": false,
+      "detail": "restore page only lists /home/backup/; copy the file there"
+    },
+    {
+      "id": "gui_meta",
+      "ok": true,
+      "detail": "meta.xml masterDomain=shop.example.net"
+    },
+    {
+      "id": "gui_domain_match",
+      "ok": true,
+      "detail": "file name domain \"shop.example.net\" vs meta.xml \"shop.example.net\""
+    }
+  ],
+  "databases": [
+    "shop_db"
+  ],
+  "ok": false
+}

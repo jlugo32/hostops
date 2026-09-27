@@ -1,0 +1,166 @@
+{
+  "$id": "https://github.com/jlugo32/hostops/docs/schema/logs-top.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "errors_4xx": {
+      "type": "integer"
+    },
+    "errors_5xx": {
+      "type": "integer"
+    },
+    "first": {
+      "type": "string"
+    },
+    "last": {
+      "type": "string"
+    },
+    "lines_read": {
+      "type": "integer"
+    },
+    "parsed": {
+      "type": "integer"
+    },
+    "probe_ips": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "count": {
+            "type": "integer"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "count",
+          "value"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "probe_paths": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "count": {
+            "type": "integer"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "count",
+          "value"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "schema": {
+      "const": "hostops.logs-top.v1",
+      "type": "string"
+    },
+    "skipped": {
+      "type": "integer"
+    },
+    "source": {
+      "type": "string"
+    },
+    "status": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "count": {
+            "type": "integer"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "count",
+          "value"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "top_ips": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "count": {
+            "type": "integer"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "count",
+          "value"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "top_paths": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "count": {
+            "type": "integer"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "count",
+          "value"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "top_user_agents": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "count": {
+            "type": "integer"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "count",
+          "value"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "errors_4xx",
+    "errors_5xx",
+    "lines_read",
+    "parsed",
+    "probe_ips",
+    "probe_paths",
+    "schema",
+    "skipped",
+    "source",
+    "status",
+    "top_ips",
+    "top_paths",
+    "top_user_agents"
+  ],
+  "title": "hostops logs-top.v1 output",
+  "type": "object"
+}

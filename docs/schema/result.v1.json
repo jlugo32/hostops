@@ -1,0 +1,85 @@
+{
+  "$id": "https://github.com/jlugo32/hostops/docs/schema/result.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "command": {
+      "type": "string"
+    },
+    "note": {
+      "type": "string"
+    },
+    "ok": {
+      "type": "boolean"
+    },
+    "schema": {
+      "const": "hostops.result.v1",
+      "type": "string"
+    },
+    "steps": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "argv": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "error": {
+            "type": "string"
+          },
+          "exit_code": {
+            "type": "integer"
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "argv",
+          "exit_code",
+          "id"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "target": {
+      "type": "string"
+    },
+    "verification": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "check": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "ok": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "check",
+          "detail",
+          "ok"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "command",
+    "ok",
+    "schema",
+    "steps",
+    "target",
+    "verification"
+  ],
+  "title": "hostops result.v1 output",
+  "type": "object"
+}

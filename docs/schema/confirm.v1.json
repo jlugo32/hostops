@@ -1,0 +1,107 @@
+{
+  "$id": "https://github.com/jlugo32/hostops/docs/schema/confirm.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "exit_code": {
+      "type": "integer"
+    },
+    "next_step": {
+      "type": "string"
+    },
+    "plan": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter": {
+          "type": "string"
+        },
+        "blast_radius": {
+          "type": "string"
+        },
+        "command": {
+          "type": "string"
+        },
+        "dry_run_diff": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "host": {
+          "type": "string"
+        },
+        "rollback": {
+          "type": "string"
+        },
+        "schema": {
+          "type": "string"
+        },
+        "steps": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "argv": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "id": {
+                "type": "string"
+              },
+              "mutates": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "argv",
+              "id",
+              "mutates"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "target": {
+          "type": "string"
+        },
+        "verify": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "adapter",
+        "blast_radius",
+        "command",
+        "dry_run_diff",
+        "host",
+        "rollback",
+        "schema",
+        "steps",
+        "target",
+        "verify"
+      ],
+      "type": "object"
+    },
+    "reason": {
+      "type": "string"
+    },
+    "schema": {
+      "const": "hostops.confirm.v1",
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "exit_code",
+    "next_step",
+    "plan",
+    "reason",
+    "schema",
+    "status"
+  ],
+  "title": "hostops confirm.v1 output",
+  "type": "object"
+}

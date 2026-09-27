@@ -1,0 +1,83 @@
+{
+  "$id": "https://github.com/jlugo32/hostops/docs/schema/firewall.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "running": {
+      "type": "boolean"
+    },
+    "schema": {
+      "const": "hostops.firewall.v1",
+      "type": "string"
+    },
+    "zones": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "active": {
+            "type": "boolean"
+          },
+          "default": {
+            "type": "boolean"
+          },
+          "interfaces": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "ports": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "rich_rules": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "services": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "sources": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "target": {
+            "type": "string"
+          },
+          "zone": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "active",
+          "default",
+          "interfaces",
+          "ports",
+          "rich_rules",
+          "services",
+          "sources",
+          "target",
+          "zone"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "running",
+    "schema",
+    "zones"
+  ],
+  "title": "hostops firewall.v1 output",
+  "type": "object"
+}

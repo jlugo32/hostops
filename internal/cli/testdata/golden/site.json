@@ -1,0 +1,37 @@
+{
+  "schema": "hostops.site.v1",
+  "site": {
+    "domain": "example.com",
+    "aliases": [
+      "www.example.com"
+    ],
+    "doc_root": "/home/example.com/public_html",
+    "config_file": "/usr/local/lsws/conf/vhosts/example.com/vhost.conf",
+    "cert_file": "/etc/letsencrypt/live/example.com/fullchain.pem",
+    "key_file": "/etc/letsencrypt/live/example.com/privkey.pem",
+    "access_log": "/home/example.com/logs/example.com.access_log",
+    "php": "lsphp85",
+    "listeners": [
+      "Default",
+      "SSL"
+    ],
+    "problems": []
+  },
+  "cert": {
+    "domain": "example.com",
+    "source": "disk",
+    "path": "/etc/letsencrypt/live/example.com/fullchain.pem",
+    "subject": "example.com",
+    "names": [
+      "example.com",
+      "www.example.com"
+    ],
+    "issuer": "Let's Encrypt / R11",
+    "not_before": "2026-08-28T12:00:00Z",
+    "not_after": "2026-11-26T12:00:00Z",
+    "days_left": 60,
+    "staging": false,
+    "covers_domain": true,
+    "sha256": "f7a4c4fdb0640b91b7f6d988735cd1455e452c68f1708a955d7180918017ca6c"
+  }
+}

@@ -1,0 +1,9 @@
+# anonymised AlmaLinux 9 sshd_config
+Include /etc/ssh/sshd_config.d/*.conf
+PermitRootLogin prohibit-password
+PasswordAuthentication no
+MaxAuthTries 4
+KbdInteractiveAuthentication no
+UsePAM yes
+X11Forwarding no
+Subsystem sftp /usr/libexec/openssh/sftp-server

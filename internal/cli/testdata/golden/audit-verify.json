@@ -1,0 +1,6 @@
+{
+  "schema": "hostops.audit-verify.v1",
+  "path": "$HOSTOPS_AUDIT_LOG",
+  "entries": 0,
+  "ok": true
+}

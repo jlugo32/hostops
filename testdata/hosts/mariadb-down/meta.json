@@ -1,0 +1,10 @@
+{
+  "modes": {
+    "/home/blog.example.org/public_html/config.php": "0600",
+    "/home/example.com/public_html/config.php": "0600",
+    "/home/shop.example.net/public_html/config.php": "0600"
+  },
+  "mtimes": {
+    "/home/backup/backup-example.com-09.27.2026_03-00-00.tar.gz": "2026-09-27T03:00:00Z"
+  }
+}

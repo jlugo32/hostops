@@ -1,0 +1,24 @@
+# sites reload: exit 4 envelope, dry-run plan, confirm, verify
+! exec hostops sites reload
+stderr '"schema": "hostops.confirm.v1"'
+stderr '"reason": "missing_token"'
+stderr '"blast_radius": "every site on this host \(3\)'
+stderr '"rollback"'
+! stderr '"confirm_token"'
+! stdout .
+! exists calls.log
+
+exec hostops sites reload --dry-run
+stdout '"confirm_token": "[0-9a-f]{16}"'
+stdout '"argv": \['
+savetoken
+! exists calls.log
+
+exec hostops sites reload --confirm=$TOKEN
+stdout '"ok": true'
+stdout '"check": "unit_active"'
+grep 'WRITE\tsystemctl reload lsws' calls.log
+
+# the token is single-use
+! exec hostops sites reload --confirm=$TOKEN
+stderr token_already_used

@@ -1,0 +1,44 @@
+{
+  "$id": "https://github.com/jlugo32/hostops/docs/schema/db-size.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "hostops.db-size.v1",
+      "type": "string"
+    },
+    "schemas": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "bytes": {
+            "type": "integer"
+          },
+          "free_bytes": {
+            "type": "integer"
+          },
+          "schema": {
+            "type": "string"
+          },
+          "tables": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "bytes",
+          "free_bytes",
+          "schema",
+          "tables"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema",
+    "schemas"
+  ],
+  "title": "hostops db-size.v1 output",
+  "type": "object"
+}

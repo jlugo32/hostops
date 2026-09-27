@@ -1,0 +1,57 @@
+{
+  "schema": "hostops.sites.v1",
+  "adapter": "openlitespeed",
+  "sites": [
+    {
+      "domain": "blog.example.org",
+      "aliases": [
+        "www.blog.example.org"
+      ],
+      "doc_root": "/home/blog.example.org/public_html",
+      "config_file": "/usr/local/lsws/conf/vhosts/blog.example.org/vhost.conf",
+      "cert_file": "/etc/letsencrypt/live/blog.example.org/fullchain.pem",
+      "key_file": "/etc/letsencrypt/live/blog.example.org/privkey.pem",
+      "access_log": "/home/blog.example.org/logs/blog.example.org.access_log",
+      "php": "lsphp85",
+      "listeners": [
+        "Default",
+        "SSL"
+      ],
+      "problems": []
+    },
+    {
+      "domain": "example.com",
+      "aliases": [
+        "www.example.com"
+      ],
+      "doc_root": "/home/example.com/public_html",
+      "config_file": "/usr/local/lsws/conf/vhosts/example.com/vhost.conf",
+      "cert_file": "/etc/letsencrypt/live/example.com/fullchain.pem",
+      "key_file": "/etc/letsencrypt/live/example.com/privkey.pem",
+      "access_log": "/home/example.com/logs/example.com.access_log",
+      "php": "lsphp85",
+      "listeners": [
+        "Default",
+        "SSL"
+      ],
+      "problems": []
+    },
+    {
+      "domain": "shop.example.net",
+      "aliases": [
+        "www.shop.example.net"
+      ],
+      "doc_root": "/home/shop.example.net/public_html",
+      "config_file": "/usr/local/lsws/conf/vhosts/shop.example.net/vhost.conf",
+      "cert_file": "/etc/letsencrypt/live/shop.example.net/fullchain.pem",
+      "key_file": "/etc/letsencrypt/live/shop.example.net/privkey.pem",
+      "access_log": "/home/shop.example.net/logs/shop.example.net.access_log",
+      "php": "lsphp85",
+      "listeners": [
+        "Default",
+        "SSL"
+      ],
+      "problems": []
+    }
+  ]
+}

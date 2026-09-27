@@ -1,0 +1,29 @@
+{
+  "schema": "hostops.db-size.v1",
+  "schemas": [
+    {
+      "schema": "shop_db",
+      "bytes": 2147483648,
+      "free_bytes": 10485760,
+      "tables": 48
+    },
+    {
+      "schema": "blog_wp",
+      "bytes": 104857600,
+      "free_bytes": 0,
+      "tables": 12
+    },
+    {
+      "schema": "site_main",
+      "bytes": 8388608,
+      "free_bytes": 0,
+      "tables": 9
+    },
+    {
+      "schema": "mysql",
+      "bytes": 2621440,
+      "free_bytes": 0,
+      "tables": 31
+    }
+  ]
+}

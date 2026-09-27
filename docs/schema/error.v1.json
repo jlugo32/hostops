@@ -1,0 +1,37 @@
+{
+  "$id": "https://github.com/jlugo32/hostops/docs/schema/error.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "error": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "kind",
+        "message"
+      ],
+      "type": "object"
+    },
+    "schema": {
+      "const": "hostops.error.v1",
+      "type": "string"
+    }
+  },
+  "required": [
+    "error",
+    "schema"
+  ],
+  "title": "hostops error.v1 output",
+  "type": "object"
+}

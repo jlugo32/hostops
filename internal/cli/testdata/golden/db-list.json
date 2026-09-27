@@ -1,0 +1,8 @@
+{
+  "schema": "hostops.db-list.v1",
+  "databases": [
+    "blog_wp",
+    "shop_db",
+    "site_main"
+  ]
+}

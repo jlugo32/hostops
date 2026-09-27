@@ -1,0 +1,62 @@
+{
+  "$id": "https://github.com/jlugo32/hostops/docs/schema/service-status.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "active_state": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "healthy": {
+      "type": "boolean"
+    },
+    "load_state": {
+      "type": "string"
+    },
+    "main_pid": {
+      "type": "integer"
+    },
+    "memory_bytes": {
+      "type": "integer"
+    },
+    "n_restarts": {
+      "type": "integer"
+    },
+    "result": {
+      "type": "string"
+    },
+    "schema": {
+      "const": "hostops.service-status.v1",
+      "type": "string"
+    },
+    "since": {
+      "type": "string"
+    },
+    "sub_state": {
+      "type": "string"
+    },
+    "unit": {
+      "type": "string"
+    },
+    "unit_file_state": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "active_state",
+    "description",
+    "healthy",
+    "load_state",
+    "main_pid",
+    "n_restarts",
+    "result",
+    "schema",
+    "sub_state",
+    "unit",
+    "unit_file_state"
+  ],
+  "title": "hostops service-status.v1 output",
+  "type": "object"
+}

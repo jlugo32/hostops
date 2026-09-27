@@ -1,0 +1,15 @@
+{
+  "schema": "hostops.service-status.v1",
+  "unit": "lsws.service",
+  "description": "lsws",
+  "load_state": "loaded",
+  "active_state": "active",
+  "sub_state": "running",
+  "result": "success",
+  "main_pid": 4242,
+  "n_restarts": 3,
+  "since": "Sun 2026-09-27 08:00:00 UTC",
+  "memory_bytes": 412332032,
+  "unit_file_state": "enabled",
+  "healthy": true
+}

@@ -1,0 +1,49 @@
+{
+  "$id": "https://github.com/jlugo32/hostops/docs/schema/journal.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "entries": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "identifier": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "integer"
+          },
+          "time": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message",
+          "priority",
+          "time"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "schema": {
+      "const": "hostops.journal.v1",
+      "type": "string"
+    },
+    "unit": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "entries",
+    "schema"
+  ],
+  "title": "hostops journal.v1 output",
+  "type": "object"
+}

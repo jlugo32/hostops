@@ -1,0 +1,90 @@
+{
+  "$id": "https://github.com/jlugo32/hostops/docs/schema/plan.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "adapter": {
+      "type": "string"
+    },
+    "blast_radius": {
+      "type": "string"
+    },
+    "command": {
+      "type": "string"
+    },
+    "confirm_token": {
+      "type": "string"
+    },
+    "dry_run_diff": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "expires_after": {
+      "type": "string"
+    },
+    "host": {
+      "type": "string"
+    },
+    "next_step": {
+      "type": "string"
+    },
+    "rollback": {
+      "type": "string"
+    },
+    "schema": {
+      "const": "hostops.plan.v1",
+      "type": "string"
+    },
+    "steps": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "argv": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "id": {
+            "type": "string"
+          },
+          "mutates": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "argv",
+          "id",
+          "mutates"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "target": {
+      "type": "string"
+    },
+    "verify": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "adapter",
+    "blast_radius",
+    "command",
+    "confirm_token",
+    "dry_run_diff",
+    "expires_after",
+    "host",
+    "next_step",
+    "rollback",
+    "schema",
+    "steps",
+    "target",
+    "verify"
+  ],
+  "title": "hostops plan.v1 output",
+  "type": "object"
+}

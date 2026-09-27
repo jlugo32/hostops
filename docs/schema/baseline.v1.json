@@ -1,0 +1,58 @@
+{
+  "$id": "https://github.com/jlugo32/hostops/docs/schema/baseline.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "checks": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "control": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "proposed_fix": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "control",
+          "evidence",
+          "id",
+          "status",
+          "title"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "schema": {
+      "const": "hostops.baseline.v1",
+      "type": "string"
+    },
+    "summary": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "type": "object"
+    }
+  },
+  "required": [
+    "checks",
+    "schema",
+    "summary"
+  ],
+  "title": "hostops baseline.v1 output",
+  "type": "object"
+}

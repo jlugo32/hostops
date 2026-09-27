@@ -145,6 +145,22 @@ var ErrReadOnly = hosterr.New(hosterr.Permission, "refusing to run a mutating co
 // OSRunner runs real processes with a scrubbed environment.
 type OSRunner struct {
 	ReadOnly bool
+	// Sudo runs every command as `sudo -n -- <abs path> <args>` for an
+	// unprivileged operator account (deploy/sudoers.d/hostops). -n makes a
+	// missing sudoers rule fail instead of prompting.
+	Sudo bool
+}
+
+// sudoPath is fixed; PATH is never consulted.
+const sudoPath = "/usr/bin/sudo"
+
+// ProcessArgv returns the program and arguments OSRunner will execute.
+func (r *OSRunner) ProcessArgv(abs string, c Command) (string, []string) {
+	args := c.Argv()[1:]
+	if r.Sudo {
+		return sudoPath, append([]string{"-n", "--", abs}, args...)
+	}
+	return abs, args
 }
 
 func (r *OSRunner) Mode() string { return "live" }
@@ -177,8 +193,8 @@ func (r *OSRunner) Run(ctx context.Context, c Command) (Result, error) {
 	}
 	ctx, cancel := context.WithTimeout(ctx, to)
 	defer cancel()
-	argv := c.Argv()[1:]
-	cmd := osexec.CommandContext(ctx, path, argv...)
+	prog, argv := r.ProcessArgv(path, c)
+	cmd := osexec.CommandContext(ctx, prog, argv...)
 	cmd.Env = []string{"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin", "LANG=C", "LC_ALL=C", "HOME=" + os.Getenv("HOME"), "SYSTEMD_PAGER=", "SYSTEMD_COLORS=0"}
 	var so, se bytes.Buffer
 	cmd.Stdout, cmd.Stderr = &so, &se

@@ -1,0 +1,136 @@
+{
+  "$id": "https://github.com/jlugo32/hostops/docs/schema/site.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "cert": {
+      "anyOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "covers_domain": {
+              "type": "boolean"
+            },
+            "days_left": {
+              "type": "integer"
+            },
+            "domain": {
+              "type": "string"
+            },
+            "issuer": {
+              "type": "string"
+            },
+            "names": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "not_after": {
+              "type": "string"
+            },
+            "not_before": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "sha256": {
+              "type": "string"
+            },
+            "source": {
+              "type": "string"
+            },
+            "staging": {
+              "type": "boolean"
+            },
+            "subject": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "covers_domain",
+            "days_left",
+            "domain",
+            "issuer",
+            "names",
+            "not_after",
+            "not_before",
+            "sha256",
+            "source",
+            "staging",
+            "subject"
+          ],
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "schema": {
+      "const": "hostops.site.v1",
+      "type": "string"
+    },
+    "site": {
+      "additionalProperties": false,
+      "properties": {
+        "access_log": {
+          "type": "string"
+        },
+        "aliases": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "cert_file": {
+          "type": "string"
+        },
+        "config_file": {
+          "type": "string"
+        },
+        "doc_root": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "key_file": {
+          "type": "string"
+        },
+        "listeners": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "php": {
+          "type": "string"
+        },
+        "problems": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "aliases",
+        "config_file",
+        "doc_root",
+        "domain",
+        "listeners",
+        "problems"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "cert",
+    "schema",
+    "site"
+  ],
+  "title": "hostops site.v1 output",
+  "type": "object"
+}

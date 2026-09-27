@@ -1,0 +1,75 @@
+{
+  "schema": "hostops.baseline.v1",
+  "summary": {
+    "fail": 2,
+    "pass": 4,
+    "unknown": 0,
+    "warn": 2
+  },
+  "checks": [
+    {
+      "id": "HO-SSH-01",
+      "title": "SSH root login restricted",
+      "status": "pass",
+      "evidence": "PermitRootLogin prohibit-password",
+      "control": "AA23-278A #2 improper separation of user/administrator privilege",
+      "proposed_fix": "set PermitRootLogin prohibit-password (key-only) in /etc/ssh/sshd_config.d/00-hostops.conf"
+    },
+    {
+      "id": "HO-SSH-02",
+      "title": "SSH password authentication disabled",
+      "status": "fail",
+      "evidence": "PasswordAuthentication yes",
+      "control": "AA23-278A #7 weak or misconfigured MFA / #9 poor credential hygiene",
+      "proposed_fix": "set PasswordAuthentication no after confirming key login works in a second session"
+    },
+    {
+      "id": "HO-SSH-03",
+      "title": "SSH MaxAuthTries <= 4",
+      "status": "pass",
+      "evidence": "MaxAuthTries 4",
+      "control": "AA23-278A #9 poor credential hygiene",
+      "proposed_fix": "set MaxAuthTries 4"
+    },
+    {
+      "id": "HO-FW-01",
+      "title": "Host firewall running",
+      "status": "pass",
+      "evidence": "firewall-cmd --state: running",
+      "control": "AA23-278A #4 lack of network segmentation",
+      "proposed_fix": "systemctl enable --now firewalld (from a console session, not SSH, the first time)"
+    },
+    {
+      "id": "HO-F2B-01",
+      "title": "fail2ban active",
+      "status": "pass",
+      "evidence": "fail2ban: active",
+      "control": "AA23-278A #3 insufficient internal network monitoring",
+      "proposed_fix": "systemctl enable --now fail2ban; ensure the sshd jail is enabled"
+    },
+    {
+      "id": "HO-SEL-01",
+      "title": "SELinux enforcing",
+      "status": "warn",
+      "evidence": "getenforce: Permissive",
+      "control": "AA23-278A #10 unrestricted code execution",
+      "proposed_fix": "fix denials with audit2why before switching to enforcing; CyberPanel ships permissive"
+    },
+    {
+      "id": "HO-UPD-01",
+      "title": "Automatic security updates",
+      "status": "warn",
+      "evidence": "dnf-automatic.timer: disabled",
+      "control": "AA23-278A #5 poor patch management",
+      "proposed_fix": "dnf install dnf-automatic; set upgrade_type = security; systemctl enable --now dnf-automatic.timer"
+    },
+    {
+      "id": "HO-PERM-01",
+      "title": "Secrets files not world-readable",
+      "status": "fail",
+      "evidence": "world-readable: /home/blog.example.org/public_html/config.php",
+      "control": "AA23-278A #8 insufficient ACLs on data / #9 poor credential hygiene",
+      "proposed_fix": "chown <siteuser>:<siteuser> <file> && chmod 600 <file>"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+exec hostops sites list
+exec hostops cert status
+exec hostops audit verify
+stdout '"entries": 2'
+stdout '"ok": true'
+grep '"prev_sha256":"0000000000000000000000000000000000000000000000000000000000000000"' audit.jsonl
+grep '"mode":"fixture"' audit.jsonl
+
+# tamper: rewrite an exit code and the chain breaks at the next line
+exec sed -i 's/"exit_code":0/"exit_code":1/' audit.jsonl
+! exec hostops audit verify
+stderr 'audit chain broken at line 2'
+stderr '"code": 5'

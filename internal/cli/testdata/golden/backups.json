@@ -1,0 +1,45 @@
+{
+  "schema": "hostops.backups.v1",
+  "backups": [
+    {
+      "path": "/home/backup/backup-example.com-09.27.2026_03-00-00.tar.gz",
+      "domain": "example.com",
+      "bytes": 436,
+      "modified": "2026-09-27T03:00:00Z",
+      "age_hours": 9,
+      "gui_visible": true
+    },
+    {
+      "path": "/home/shop.example.net/backup/backup-shop.example.net-09.01.2026_03-00-00.tar.gz",
+      "domain": "shop.example.net",
+      "bytes": 435,
+      "modified": "2026-08-30T12:00:00Z",
+      "age_hours": 672,
+      "gui_visible": false
+    },
+    {
+      "path": "/home/shop.example.net/backup/backup-shop.example.net-08.01.2026_03-00-00.tar.gz",
+      "domain": "shop.example.net",
+      "bytes": 435,
+      "modified": "2026-07-31T12:00:00Z",
+      "age_hours": 1392,
+      "gui_visible": false
+    },
+    {
+      "path": "/home/shop.example.net/backup/backup-shop.example.net-07.01.2026_03-00-00.tar.gz",
+      "domain": "shop.example.net",
+      "bytes": 435,
+      "modified": "2026-07-01T12:00:00Z",
+      "age_hours": 2112,
+      "gui_visible": false
+    },
+    {
+      "path": "/home/shop.example.net/backup/backup-shop.example.net-06.01.2026_03-00-00.tar.gz",
+      "domain": "shop.example.net",
+      "bytes": 435,
+      "modified": "2026-06-01T12:00:00Z",
+      "age_hours": 2832,
+      "gui_visible": false
+    }
+  ]
+}

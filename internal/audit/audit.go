@@ -116,7 +116,7 @@ func (l *Log) Append(e Entry) (Entry, error) {
 	if err != nil {
 		return e, err
 	}
-	defer f.Close()
+	defer f.Close() //nolint:errcheck // durability comes from the checked Sync below
 	if err := syscall.Flock(int(f.Fd()), syscall.LOCK_EX); err != nil {
 		return e, err
 	}
@@ -212,7 +212,7 @@ func Verify(path string) (VerifyReport, error) {
 		}
 		return rep, hosterr.Wrap(hosterr.General, err, "opening audit log")
 	}
-	defer f.Close()
+	defer f.Close() //nolint:errcheck // read-only handle
 	sc := bufio.NewScanner(f)
 	sc.Buffer(make([]byte, 1<<20), 16<<20)
 	prev := Genesis
@@ -236,4 +236,33 @@ func Verify(path string) (VerifyReport, error) {
 	}
 	rep.Entries, rep.OK, rep.HeadSHA256 = n, true, prev
 	return rep, nil
+}
+
+// TokenUsed reports whether token already authorized an executed (not
+// dry-run, not refused) command. Confirm tokens are single-use.
+func TokenUsed(path, token string) (bool, error) {
+	if token == "" {
+		return false, nil
+	}
+	f, err := os.Open(path)
+	if err != nil {
+		if os.IsNotExist(err) {
+			return false, nil
+		}
+		return false, err
+	}
+	defer f.Close() //nolint:errcheck // read-only handle
+	sc := bufio.NewScanner(f)
+	sc.Buffer(make([]byte, 1<<20), 16<<20)
+	needle := []byte(`"confirm_token":"` + token + `"`)
+	for sc.Scan() {
+		if !bytes.Contains(sc.Bytes(), needle) {
+			continue
+		}
+		var e Entry
+		if json.Unmarshal(sc.Bytes(), &e) == nil && e.ConfirmToken == token && !e.DryRun && e.ExitCode != hosterr.Confirm {
+			return true, nil
+		}
+	}
+	return false, sc.Err()
 }

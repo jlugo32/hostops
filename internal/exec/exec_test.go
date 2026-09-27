@@ -4,6 +4,7 @@ import (
 	"context"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 
 	"github.com/jlugo32/hostops/internal/hosterr"
@@ -86,5 +87,17 @@ func TestLive_OSRunnerRunsSystemctlVersion(t *testing.T) {
 	res, err := r.Run(context.Background(), Command{ID: "sc.version", Bin: Systemctl, Args: []Arg{Lit("--version")}})
 	if err != nil || res.ExitCode != 0 {
 		t.Fatalf("systemctl --version: %v %d", err, res.ExitCode)
+	}
+}
+
+func TestSudoArgv(t *testing.T) {
+	c := Command{ID: "r", Bin: Systemctl, Args: []Arg{Lit("reload"), Lit("lsws")}, Mutates: true}
+	prog, args := (&OSRunner{Sudo: true}).ProcessArgv("/usr/bin/systemctl", c)
+	if prog != "/usr/bin/sudo" || strings.Join(args, " ") != "-n -- /usr/bin/systemctl reload lsws" {
+		t.Fatalf("%s %v", prog, args)
+	}
+	prog, args = (&OSRunner{}).ProcessArgv("/usr/bin/systemctl", c)
+	if prog != "/usr/bin/systemctl" || strings.Join(args, " ") != "reload lsws" {
+		t.Fatalf("%s %v", prog, args)
 	}
 }

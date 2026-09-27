@@ -1,0 +1,11 @@
+exec hostops baseline check
+stdout '"schema": "hostops.baseline.v1"'
+stdout '"HO-SSH-02"'
+stdout 'AA23-278A'
+
+env HOSTOPS_FIXTURES=$HOSTS/hardening-review
+! exec hostops baseline check --plain
+stdout '^HO-SSH-02\tfail\t'
+stdout '^HO-UPD-01\twarn\t'
+stdout '^HO-PERM-01\tfail\t.*blog.example.org/public_html/config.php'
+stderr 'baseline check\(s\) failed'

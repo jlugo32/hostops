@@ -1,0 +1,25 @@
+exec hostops service status lsws
+stdout '"active_state": "active"'
+stdout '"healthy": true'
+
+! exec hostops service restart mariadb
+stderr '"reason": "missing_token"'
+stderr 'every site using the database'
+
+exec hostops service restart mariadb --dry-run
+savetoken
+exec hostops service restart mariadb --confirm=$TOKEN
+stdout '"check": "unit_active"'
+
+# protected units are refused before any plan exists
+! exec hostops service restart sshd --dry-run
+stderr '"code": 2'
+! exec hostops service restart NetworkManager.service
+stderr '"code": 2'
+
+env HOSTOPS_FIXTURES=$HOSTS/mariadb-down
+exec hostops service status mariadb
+stdout '"result": "exit-code"'
+stdout '"healthy": false'
+exec hostops logs journal --unit mariadb --lines 50
+stdout 'No space left on device'

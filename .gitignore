@@ -3,3 +3,4 @@ dist/
 *.test
 /evals/results/
 coverage.out
+.hostops-audit.jsonl

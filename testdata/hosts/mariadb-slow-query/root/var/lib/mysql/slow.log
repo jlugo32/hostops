@@ -1,0 +1,279 @@
+/usr/sbin/mariadbd, Version: 11.8.8-MariaDB-log (MariaDB Server). started with:
+Tcp port: 3306  Unix socket: /var/lib/mysql/mysql.sock
+Time                Id Command  Argument
+# Time: 260927 11:00:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 100  Schema: shop_db  QC_hit: No
+# Query_time: 3.800000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790506800;
+SELECT * FROM orders WHERE customer_email = 'user0@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:01:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 101  Schema: shop_db  QC_hit: No
+# Query_time: 3.900000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790506860;
+SELECT * FROM orders WHERE customer_email = 'user1@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:02:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 102  Schema: shop_db  QC_hit: No
+# Query_time: 4.000000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790506920;
+SELECT * FROM orders WHERE customer_email = 'user2@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:03:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 103  Schema: shop_db  QC_hit: No
+# Query_time: 4.100000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790506980;
+SELECT * FROM orders WHERE customer_email = 'user3@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:04:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 104  Schema: shop_db  QC_hit: No
+# Query_time: 4.200000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790507040;
+SELECT * FROM orders WHERE customer_email = 'user4@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:05:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 105  Schema: shop_db  QC_hit: No
+# Query_time: 3.800000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790507100;
+SELECT * FROM orders WHERE customer_email = 'user5@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:06:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 106  Schema: shop_db  QC_hit: No
+# Query_time: 3.900000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790507160;
+SELECT * FROM orders WHERE customer_email = 'user6@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:07:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 107  Schema: shop_db  QC_hit: No
+# Query_time: 4.000000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790507220;
+SELECT * FROM orders WHERE customer_email = 'user7@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:08:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 108  Schema: shop_db  QC_hit: No
+# Query_time: 4.100000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790507280;
+SELECT * FROM orders WHERE customer_email = 'user8@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:09:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 109  Schema: shop_db  QC_hit: No
+# Query_time: 4.200000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790507340;
+SELECT * FROM orders WHERE customer_email = 'user9@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:10:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 110  Schema: shop_db  QC_hit: No
+# Query_time: 3.800000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790507400;
+SELECT * FROM orders WHERE customer_email = 'user10@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:11:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 111  Schema: shop_db  QC_hit: No
+# Query_time: 3.900000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790507460;
+SELECT * FROM orders WHERE customer_email = 'user11@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:12:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 112  Schema: shop_db  QC_hit: No
+# Query_time: 4.000000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790507520;
+SELECT * FROM orders WHERE customer_email = 'user12@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:13:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 113  Schema: shop_db  QC_hit: No
+# Query_time: 4.100000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790507580;
+SELECT * FROM orders WHERE customer_email = 'user13@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:14:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 114  Schema: shop_db  QC_hit: No
+# Query_time: 4.200000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790507640;
+SELECT * FROM orders WHERE customer_email = 'user14@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:15:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 115  Schema: shop_db  QC_hit: No
+# Query_time: 3.800000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790507700;
+SELECT * FROM orders WHERE customer_email = 'user15@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:16:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 116  Schema: shop_db  QC_hit: No
+# Query_time: 3.900000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790507760;
+SELECT * FROM orders WHERE customer_email = 'user16@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:17:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 117  Schema: shop_db  QC_hit: No
+# Query_time: 4.000000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790507820;
+SELECT * FROM orders WHERE customer_email = 'user17@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:18:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 118  Schema: shop_db  QC_hit: No
+# Query_time: 4.100000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790507880;
+SELECT * FROM orders WHERE customer_email = 'user18@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:19:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 119  Schema: shop_db  QC_hit: No
+# Query_time: 4.200000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790507940;
+SELECT * FROM orders WHERE customer_email = 'user19@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:20:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 120  Schema: shop_db  QC_hit: No
+# Query_time: 3.800000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790508000;
+SELECT * FROM orders WHERE customer_email = 'user20@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:21:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 121  Schema: shop_db  QC_hit: No
+# Query_time: 3.900000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790508060;
+SELECT * FROM orders WHERE customer_email = 'user21@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:22:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 122  Schema: shop_db  QC_hit: No
+# Query_time: 4.000000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790508120;
+SELECT * FROM orders WHERE customer_email = 'user22@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:23:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 123  Schema: shop_db  QC_hit: No
+# Query_time: 4.100000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790508180;
+SELECT * FROM orders WHERE customer_email = 'user23@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:24:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 124  Schema: shop_db  QC_hit: No
+# Query_time: 4.200000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790508240;
+SELECT * FROM orders WHERE customer_email = 'user24@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:25:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 125  Schema: shop_db  QC_hit: No
+# Query_time: 3.800000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790508300;
+SELECT * FROM orders WHERE customer_email = 'user25@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:26:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 126  Schema: shop_db  QC_hit: No
+# Query_time: 3.900000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790508360;
+SELECT * FROM orders WHERE customer_email = 'user26@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:27:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 127  Schema: shop_db  QC_hit: No
+# Query_time: 4.000000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790508420;
+SELECT * FROM orders WHERE customer_email = 'user27@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:28:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 128  Schema: shop_db  QC_hit: No
+# Query_time: 4.100000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790508480;
+SELECT * FROM orders WHERE customer_email = 'user28@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:29:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 129  Schema: shop_db  QC_hit: No
+# Query_time: 4.200000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790508540;
+SELECT * FROM orders WHERE customer_email = 'user29@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:30:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 130  Schema: shop_db  QC_hit: No
+# Query_time: 3.800000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790508600;
+SELECT * FROM orders WHERE customer_email = 'user30@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:31:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 131  Schema: shop_db  QC_hit: No
+# Query_time: 3.900000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790508660;
+SELECT * FROM orders WHERE customer_email = 'user31@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:32:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 132  Schema: shop_db  QC_hit: No
+# Query_time: 4.000000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790508720;
+SELECT * FROM orders WHERE customer_email = 'user32@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:33:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 133  Schema: shop_db  QC_hit: No
+# Query_time: 4.100000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790508780;
+SELECT * FROM orders WHERE customer_email = 'user33@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:34:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 134  Schema: shop_db  QC_hit: No
+# Query_time: 4.200000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790508840;
+SELECT * FROM orders WHERE customer_email = 'user34@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:35:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 135  Schema: shop_db  QC_hit: No
+# Query_time: 3.800000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790508900;
+SELECT * FROM orders WHERE customer_email = 'user35@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:36:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 136  Schema: shop_db  QC_hit: No
+# Query_time: 3.900000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790508960;
+SELECT * FROM orders WHERE customer_email = 'user36@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:37:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 137  Schema: shop_db  QC_hit: No
+# Query_time: 4.000000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790509020;
+SELECT * FROM orders WHERE customer_email = 'user37@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:38:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 138  Schema: shop_db  QC_hit: No
+# Query_time: 4.100000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790509080;
+SELECT * FROM orders WHERE customer_email = 'user38@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:39:01
+# User@Host: shop_usr[shop_usr] @ localhost []
+# Thread_id: 139  Schema: shop_db  QC_hit: No
+# Query_time: 4.200000  Lock_time: 0.000120  Rows_sent: 10  Rows_examined: 2500000
+SET timestamp=1790509140;
+SELECT * FROM orders WHERE customer_email = 'user39@example.com' ORDER BY created_at DESC LIMIT 10;
+# Time: 260927 11:00:30
+# User@Host: wp[wp] @ localhost []
+# Thread_id: 300  Schema: blog_wp  QC_hit: No
+# Query_time: 2.100000  Lock_time: 0.000050  Rows_sent: 1  Rows_examined: 91000
+SET timestamp=1790507400;
+SELECT option_value FROM wp_options WHERE autoload = 'yes';
+# Time: 260927 11:09:30
+# User@Host: wp[wp] @ localhost []
+# Thread_id: 301  Schema: blog_wp  QC_hit: No
+# Query_time: 2.100000  Lock_time: 0.000050  Rows_sent: 1  Rows_examined: 91000
+SET timestamp=1790507460;
+SELECT option_value FROM wp_options WHERE autoload = 'yes';
+# Time: 260927 11:18:30
+# User@Host: wp[wp] @ localhost []
+# Thread_id: 302  Schema: blog_wp  QC_hit: No
+# Query_time: 2.100000  Lock_time: 0.000050  Rows_sent: 1  Rows_examined: 91000
+SET timestamp=1790507520;
+SELECT option_value FROM wp_options WHERE autoload = 'yes';
+# Time: 260927 11:27:30
+# User@Host: wp[wp] @ localhost []
+# Thread_id: 303  Schema: blog_wp  QC_hit: No
+# Query_time: 2.100000  Lock_time: 0.000050  Rows_sent: 1  Rows_examined: 91000
+SET timestamp=1790507580;
+SELECT option_value FROM wp_options WHERE autoload = 'yes';
+# Time: 260927 11:36:30
+# User@Host: wp[wp] @ localhost []
+# Thread_id: 304  Schema: blog_wp  QC_hit: No
+# Query_time: 2.100000  Lock_time: 0.000050  Rows_sent: 1  Rows_examined: 91000
+SET timestamp=1790507640;
+SELECT option_value FROM wp_options WHERE autoload = 'yes';
+# Time: 260927 11:45:30
+# User@Host: wp[wp] @ localhost []
+# Thread_id: 305  Schema: blog_wp  QC_hit: No
+# Query_time: 2.100000  Lock_time: 0.000050  Rows_sent: 1  Rows_examined: 91000
+SET timestamp=1790507700;
+SELECT option_value FROM wp_options WHERE autoload = 'yes';

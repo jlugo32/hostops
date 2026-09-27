@@ -1,0 +1,116 @@
+{
+  "schema": "hostops.cert-status.v1",
+  "certs": [
+    {
+      "domain": "blog.example.org",
+      "disk": {
+        "domain": "blog.example.org",
+        "source": "disk",
+        "path": "/etc/letsencrypt/live/blog.example.org/fullchain.pem",
+        "subject": "blog.example.org",
+        "names": [
+          "blog.example.org",
+          "www.blog.example.org"
+        ],
+        "issuer": "(STAGING) Let's Encrypt / (STAGING) Ersatz Edamame E1",
+        "not_before": "2026-09-26T12:00:00Z",
+        "not_after": "2026-12-25T12:00:00Z",
+        "days_left": 89,
+        "staging": true,
+        "covers_domain": true,
+        "sha256": "c2002e27d6699185e914448350309fd4d2195edf135cfaac0bd44c6edc2057fe"
+      },
+      "served": {
+        "domain": "blog.example.org",
+        "source": "served",
+        "subject": "blog.example.org",
+        "names": [
+          "blog.example.org",
+          "www.blog.example.org"
+        ],
+        "issuer": "(STAGING) Let's Encrypt / (STAGING) Ersatz Edamame E1",
+        "not_before": "2026-09-26T12:00:00Z",
+        "not_after": "2026-12-25T12:00:00Z",
+        "days_left": 89,
+        "staging": true,
+        "covers_domain": true,
+        "sha256": "c2002e27d6699185e914448350309fd4d2195edf135cfaac0bd44c6edc2057fe"
+      },
+      "served_matches_disk": true
+    },
+    {
+      "domain": "example.com",
+      "disk": {
+        "domain": "example.com",
+        "source": "disk",
+        "path": "/etc/letsencrypt/live/example.com/fullchain.pem",
+        "subject": "example.com",
+        "names": [
+          "example.com",
+          "www.example.com"
+        ],
+        "issuer": "Let's Encrypt / R11",
+        "not_before": "2026-08-28T12:00:00Z",
+        "not_after": "2026-11-26T12:00:00Z",
+        "days_left": 60,
+        "staging": false,
+        "covers_domain": true,
+        "sha256": "d55fe700c75d886d747899cd72a7137660477e04267789b2486b08832509e364"
+      },
+      "served": {
+        "domain": "example.com",
+        "source": "served",
+        "subject": "example.com",
+        "names": [
+          "example.com",
+          "www.example.com"
+        ],
+        "issuer": "Let's Encrypt / R11",
+        "not_before": "2026-08-28T12:00:00Z",
+        "not_after": "2026-11-26T12:00:00Z",
+        "days_left": 60,
+        "staging": false,
+        "covers_domain": true,
+        "sha256": "d55fe700c75d886d747899cd72a7137660477e04267789b2486b08832509e364"
+      },
+      "served_matches_disk": true
+    },
+    {
+      "domain": "shop.example.net",
+      "disk": {
+        "domain": "shop.example.net",
+        "source": "disk",
+        "path": "/etc/letsencrypt/live/shop.example.net/fullchain.pem",
+        "subject": "shop.example.net",
+        "names": [
+          "shop.example.net",
+          "www.shop.example.net"
+        ],
+        "issuer": "Let's Encrypt / R11",
+        "not_before": "2026-08-21T12:00:00Z",
+        "not_after": "2026-11-19T12:00:00Z",
+        "days_left": 53,
+        "staging": false,
+        "covers_domain": true,
+        "sha256": "a1e1a496874d91f872da7fbf1fa5371ff2cbf3254d954452890e81eefd13cae2"
+      },
+      "served": {
+        "domain": "shop.example.net",
+        "source": "served",
+        "subject": "shop.example.net",
+        "names": [
+          "shop.example.net",
+          "www.shop.example.net"
+        ],
+        "issuer": "Let's Encrypt / R11",
+        "not_before": "2026-08-21T12:00:00Z",
+        "not_after": "2026-11-19T12:00:00Z",
+        "days_left": 53,
+        "staging": false,
+        "covers_domain": true,
+        "sha256": "a1e1a496874d91f872da7fbf1fa5371ff2cbf3254d954452890e81eefd13cae2"
+      },
+      "served_matches_disk": true
+    }
+  ]
+}

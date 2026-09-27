@@ -1,0 +1,75 @@
+{
+  "schema": "hostops.logs-top.v1",
+  "source": "/home/example.com/logs/example.com.access_log",
+  "lines_read": 245,
+  "parsed": 245,
+  "skipped": 0,
+  "first": "2026-09-27T11:00:00Z",
+  "last": "2026-09-27T12:00:00Z",
+  "status": [
+    {
+      "value": "404",
+      "count": 180
+    },
+    {
+      "value": "200",
+      "count": 65
+    }
+  ],
+  "top_ips": [
+    {
+      "value": "198.51.100.66",
+      "count": 180
+    },
+    {
+      "value": "192.0.2.10",
+      "count": 10
+    },
+    {
+      "value": "192.0.2.11",
+      "count": 10
+    }
+  ],
+  "top_paths": [
+    {
+      "value": "/wp-login.php",
+      "count": 180
+    },
+    {
+      "value": "/",
+      "count": 30
+    },
+    {
+      "value": "/assets/app.css",
+      "count": 30
+    }
+  ],
+  "top_user_agents": [
+    {
+      "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+      "count": 200
+    },
+    {
+      "value": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+      "count": 20
+    },
+    {
+      "value": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X)",
+      "count": 20
+    }
+  ],
+  "errors_5xx": 0,
+  "errors_4xx": 180,
+  "probe_paths": [
+    {
+      "value": "/wp-login.php",
+      "count": 180
+    }
+  ],
+  "probe_ips": [
+    {
+      "value": "198.51.100.66",
+      "count": 180
+    }
+  ]
+}

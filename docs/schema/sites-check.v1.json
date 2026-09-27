@@ -1,0 +1,58 @@
+{
+  "$id": "https://github.com/jlugo32/hostops/docs/schema/sites-check.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "ok": {
+      "type": "boolean"
+    },
+    "schema": {
+      "const": "hostops.sites-check.v1",
+      "type": "string"
+    },
+    "sites": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "cert_days_left": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "domain": {
+            "type": "string"
+          },
+          "ok": {
+            "type": "boolean"
+          },
+          "problems": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "cert_days_left",
+          "domain",
+          "ok",
+          "problems"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "ok",
+    "schema",
+    "sites"
+  ],
+  "title": "hostops sites-check.v1 output",
+  "type": "object"
+}

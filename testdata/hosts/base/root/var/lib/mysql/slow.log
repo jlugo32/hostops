@@ -1,0 +1,3 @@
+/usr/sbin/mariadbd, Version: 11.8.8-MariaDB-log (MariaDB Server). started with:
+Tcp port: 3306  Unix socket: /var/lib/mysql/mysql.sock
+Time                Id Command  Argument

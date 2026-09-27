@@ -1,0 +1,44 @@
+exec hostops backup list
+stdout '"gui_visible": true'
+stdout '"domain": "example.com"'
+
+exec hostops backup verify /home/backup/backup-example.com-09.27.2026_03-00-00.tar.gz --gui-compatible
+stdout '"gui_compatible": true'
+stdout '"databases": \[\s*"shop_db"'
+
+env HOSTOPS_FIXTURES=$HOSTS/stale-backup-path
+exec hostops backup list shop.example.net --plain
+stdout '/home/shop.example.net/backup/backup-shop.example.net-09.26.2026_03-00-00.tar.gz\tshop.example.net\t33.0\tfalse'
+! exec hostops backup verify /home/shop.example.net/backup/backup-shop.example.net-09.26.2026_03-00-00.tar.gz --gui-compatible
+stdout 'restore page only lists /home/backup/'
+stderr '"code": 5'
+
+# restore: verification first, then a safety backup, then the restore
+env HOSTOPS_FIXTURES=$HOSTS/urgent-restore
+! exec hostops backup restore /home/backup/backup-example.com-09.27.2026_03-00-00.tar.gz
+stderr '"reason": "missing_token"'
+stderr 'safety backup'
+exec hostops backup restore /home/backup/backup-example.com-09.27.2026_03-00-00.tar.gz --dry-run
+stdout 'createBackup'
+stdout 'restoreBackup'
+savetoken
+exec hostops backup restore /home/backup/backup-example.com-09.27.2026_03-00-00.tar.gz --confirm=$TOKEN
+stdout '"check": "site_healthy"'
+
+exec hostops backup create example.com --dry-run
+stdout '"--backupPath"'
+stdout '"/home/backup"'
+savetoken
+exec hostops backup create example.com --confirm=$TOKEN
+stdout '"check": "new_archive"'
+
+# the CyberPanel CLI exits 0 even when it writes nothing: verification catches it
+env HOSTOPS_FIXTURES=$HOSTS/base
+exec hostops backup create shop.example.net --dry-run
+savetoken
+! exec hostops backup create shop.example.net --confirm=$TOKEN
+stderr 'new_archive'
+stderr '"code": 5'
+
+! exec hostops backup verify /etc/shadow
+stderr 'outside allowed roots'

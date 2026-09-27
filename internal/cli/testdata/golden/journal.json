@@ -1,0 +1,32 @@
+{
+  "schema": "hostops.journal.v1",
+  "unit": "lsws",
+  "entries": [
+    {
+      "time": "2026-09-27T11:35:00Z",
+      "priority": 3,
+      "identifier": "kernel",
+      "message": "Out of memory: Killed process 51234 (lsphp) total-vm:1893244kB, anon-rss:1024112kB, file-rss:0kB, shmem-rss:0kB, UID:1001"
+    },
+    {
+      "time": "2026-09-27T11:36:00Z",
+      "unit": "lsws.service",
+      "priority": 3,
+      "identifier": "lsws",
+      "message": "[ERROR] [UDS://tmp/lshttpd/shop2111.sock] Premature end of response header."
+    },
+    {
+      "time": "2026-09-27T11:48:00Z",
+      "priority": 3,
+      "identifier": "kernel",
+      "message": "Out of memory: Killed process 51876 (lsphp) total-vm:1901120kB, anon-rss:1030220kB, file-rss:0kB, shmem-rss:0kB, UID:1001"
+    },
+    {
+      "time": "2026-09-27T11:49:00Z",
+      "unit": "lsws.service",
+      "priority": 3,
+      "identifier": "lsws",
+      "message": "[ERROR] [UDS://tmp/lshttpd/shop2111.sock] Premature end of response header."
+    }
+  ]
+}

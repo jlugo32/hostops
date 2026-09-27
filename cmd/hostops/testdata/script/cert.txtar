@@ -1,0 +1,38 @@
+exec hostops cert status --plain
+stdout '^shop.example.net\t53\t'
+
+exec hostops cert status example.com --served
+stdout '"served_matches_disk": true'
+
+env HOSTOPS_FIXTURES=$HOSTS/staging-cert
+exec hostops cert status blog.example.org
+stdout '"staging": true'
+! exec hostops sites check blog.example.org
+stdout 'STAGING issuer'
+
+exec hostops cert renew blog.example.org --dry-run
+stdout 'saved renewal config points at STAGING'
+stdout '"letsencrypt"'
+savetoken
+exec hostops cert renew blog.example.org --confirm=$TOKEN --verify-served
+stdout '"served_matches_disk"'
+stdout '"ok": true'
+
+# renewed on disk but the server keeps the old cert: exit 5, never "ok"
+env HOSTOPS_FIXTURES=$HOSTS/renewed-not-served
+exec hostops cert renew example.com --dry-run
+savetoken
+! exec hostops cert renew example.com --confirm=$TOKEN
+stdout '"ok": false'
+stderr 'verification failed: served_matches_disk'
+stderr '"code": 5'
+
+# skipping served verification is inconclusive (exit 6), not success
+env HOSTOPS_FIXTURES=$HOSTS/expired-cert
+exec hostops cert renew shop.example.net --verify-served=false --dry-run
+savetoken
+! exec hostops cert renew shop.example.net --verify-served=false --confirm=$TOKEN
+stderr '"code": 6'
+
+! exec hostops cert renew nosuch.example --dry-run
+stderr 'no acme.sh or certbot renewal config'

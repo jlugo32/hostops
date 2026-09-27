@@ -1,0 +1,64 @@
+{
+  "$id": "https://github.com/jlugo32/hostops/docs/schema/fail2ban.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "jails": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "banned_ips": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "currently_banned": {
+            "type": "integer"
+          },
+          "currently_failed": {
+            "type": "integer"
+          },
+          "jail": {
+            "type": "string"
+          },
+          "total_banned": {
+            "type": "integer"
+          },
+          "total_failed": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "banned_ips",
+          "currently_banned",
+          "currently_failed",
+          "jail",
+          "total_banned",
+          "total_failed"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "schema": {
+      "const": "hostops.fail2ban.v1",
+      "type": "string"
+    },
+    "session_ip": {
+      "type": "string"
+    },
+    "session_ip_banned_in": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "jails",
+    "schema"
+  ],
+  "title": "hostops fail2ban.v1 output",
+  "type": "object"
+}

@@ -1,0 +1,46 @@
+{
+  "schema": "hostops.confirm.v1",
+  "status": "confirmation_required",
+  "reason": "missing_token",
+  "exit_code": 4,
+  "plan": {
+    "schema": "hostops.plan.v1",
+    "command": "cert renew",
+    "target": "shop.example.net",
+    "adapter": "cyberpanel",
+    "host": "fixture-host",
+    "steps": [
+      {
+        "id": "certs.renew.acme",
+        "argv": [
+          "acme.sh",
+          "--renew",
+          "-d",
+          "shop.example.net",
+          "--force",
+          "--server",
+          "letsencrypt",
+          "--ecc"
+        ],
+        "mutates": true
+      },
+      {
+        "id": "openlitespeed.reload",
+        "argv": [
+          "systemctl",
+          "reload",
+          "lsws"
+        ],
+        "mutates": true
+      }
+    ],
+    "dry_run_diff": [
+      "current cert: expires 2026-09-25 (-2 days), issuer Let's Encrypt / R11",
+      "new: 90-day cert from Let's Encrypt production via acme.sh"
+    ],
+    "blast_radius": "TLS for shop.example.net; the lsws reload touches every site gracefully. Let's Encrypt allows 5 duplicate certs per week",
+    "rollback": "the previous cert stays in the ACME client's backup; reinstall it and reload if the new one misbehaves",
+    "verify": "served cert (127.0.0.1:443, SNI) equals the new on-disk cert, is not staging, and has >= 30 days left"
+  },
+  "next_step": "review this plan, then run: hostops cert renew shop.example.net --dry-run  (it prints confirm_token)"
+}

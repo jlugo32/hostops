@@ -1,0 +1,3 @@
+{"level":"info","ts":1790506800.123,"logger":"http.log.access","msg":"handled request","request":{"remote_ip":"10.0.0.2","client_ip":"203.0.113.50","proto":"HTTP/2.0","method":"GET","host":"example.net","uri":"/blog/","headers":{"User-Agent":["Mozilla/5.0"],"Referer":["https://duckduckgo.com/"]}},"status":200,"size":9001}
+{"level":"info","ts":1790506801,"logger":"http.log.access","msg":"handled request","request":{"remote_ip":"203.0.113.51","proto":"HTTP/1.1","method":"POST","host":"example.net","uri":"/login","headers":{}},"status":429,"size":0}
+{"level":"error","msg":"not an access line"}

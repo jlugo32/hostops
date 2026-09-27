@@ -1,0 +1,31 @@
+{
+  "schema": "hostops.db-slowlog.v1",
+  "settings": {
+    "enabled": true,
+    "file": "/var/lib/mysql/slow.log",
+    "long_query_time": 2,
+    "datadir": "/var/lib/mysql/"
+  },
+  "queries": [
+    {
+      "fingerprint": "select * from orders where customer_email = ? order by created_at desc limit ?",
+      "schema": "shop_db",
+      "count": 40,
+      "total_sec": 160,
+      "max_sec": 4.2,
+      "rows_examined": 100000000,
+      "rows_sent": 400,
+      "example": "SELECT * FROM orders WHERE customer_email = 'user0@example.com' ORDER BY created_at DESC LIMIT 10;"
+    },
+    {
+      "fingerprint": "select option_value from wp_options where autoload = ?",
+      "schema": "blog_wp",
+      "count": 6,
+      "total_sec": 12.6,
+      "max_sec": 2.1,
+      "rows_examined": 546000,
+      "rows_sent": 6,
+      "example": "SELECT option_value FROM wp_options WHERE autoload = 'yes';"
+    }
+  ]
+}

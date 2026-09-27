@@ -1,0 +1,31 @@
+# sites list/get/check against the healthy base host
+exec hostops sites list --json
+stdout '"schema": "hostops.sites.v1"'
+stdout '"domain": "example.com"'
+stdout '"php": "lsphp85"'
+! stderr .
+
+exec hostops sites list --plain
+stdout '^blog.example.org\t/home/blog.example.org/public_html\tlsphp85\t0$'
+
+exec hostops sites get www.shop.example.net
+stdout '"domain": "shop.example.net"'
+stdout '"days_left": 53'
+
+exec hostops sites check
+stdout '"ok": true'
+
+! exec hostops sites get nosuch.example
+stderr 'no site \\"nosuch.example'
+
+# typo host: check names the directive and exits 5
+env HOSTOPS_FIXTURES=$HOSTS/ols-vhost-typo
+! exec hostops sites check blog.example.org
+stdout 'unknown directive \\"docRot\\"'
+stderr '"code": 5'
+
+# ...and reload refuses at pre-flight, even as a dry-run, running nothing
+! exec hostops sites reload --dry-run
+stderr 'pre-flight failed'
+stderr '"code": 3'
+! exists calls.log

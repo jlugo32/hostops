@@ -1,0 +1,23 @@
+{
+  "$id": "https://github.com/jlugo32/hostops/docs/schema/db-list.v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "databases": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "schema": {
+      "const": "hostops.db-list.v1",
+      "type": "string"
+    }
+  },
+  "required": [
+    "databases",
+    "schema"
+  ],
+  "title": "hostops db-list.v1 output",
+  "type": "object"
+}

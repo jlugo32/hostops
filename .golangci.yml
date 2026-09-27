@@ -1,0 +1,31 @@
+version: "2"
+linters:
+  default: standard
+  enable:
+    - gosec
+    - errorlint
+    - misspell
+    - unconvert
+    - bodyclose
+  settings:
+    errcheck:
+      exclude-functions:
+        - fmt.Fprintf
+        - fmt.Fprintln
+        - fmt.Fprint
+    gosec:
+      excludes:
+        - G204 # subprocess with variable: every argv is a typed, validated exec.Command
+        - G304 # file path from variable: all host paths go through validate.PathUnder or adapter config
+        - G301
+        - G302
+        - G306
+  exclusions:
+    rules:
+      - path: _test\.go
+        linters: [errcheck, gosec]
+      - path: internal/testhost/
+        linters: [errcheck, gosec]
+formatters:
+  enable:
+    - gofmt

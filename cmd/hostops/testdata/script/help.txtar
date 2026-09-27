@@ -1,0 +1,22 @@
+# help lists read and write commands with the exit-code contract
+exec hostops --help
+stdout 'WRITE cert renew'
+stdout 'read  cert status'
+stdout '4 confirmation required'
+! stdout '^\s+\S+\s+(run|exec|shell)\s'
+! stderr .
+
+exec hostops version
+stdout '^hostops '
+
+# --read-only removes write commands from help
+exec hostops --read-only help
+! stdout WRITE
+stdout 'read  sites list'
+
+# no catch-all execution command exists
+! exec hostops run id
+stderr 'unknown command'
+! exec hostops exec -- id
+stderr 'unknown command'
+! exec hostops shell

@@ -1,0 +1,29 @@
+# Every hostile parameter fails closed with exit 3 and runs nothing.
+! exec hostops cert status 'example.com; rm -rf /'
+stderr '"code": 3'
+! exec hostops cert renew 'example.com$(id)' --dry-run
+stderr '"code": 3'
+! exec hostops sites get '`reboot`'
+stderr '"code": 3'
+! exec hostops service status 'lsws;reboot'
+stderr '"code": 3'
+! exec hostops service restart '../../etc/passwd' --dry-run
+stderr '"code": 3'
+! exec hostops fail2ban unban '1.2.3.4|nc'
+stderr '"code": 3'
+! exec hostops fail2ban unban 1.2.3.4 --jail 'sshd && id'
+stderr '"code": 3'
+! exec hostops backup verify /home/backup/../../etc/shadow
+stderr 'path traversal'
+! exec hostops backup restore /home/backup/x.tar.gz;id
+stderr '"code": 3'
+! exec hostops logs journal --unit '-o verbose'
+stderr '"code": 3'
+! exec hostops sites get -- --help
+! exec hostops cert status --adapter 'nginx;id'
+stderr '"code": 3'
+! exec hostops sites list --bogus
+stderr 'unknown flag'
+! exists calls.log
+
+# (newline and log-line injection through argv is covered in internal/cli/cli_test.go)

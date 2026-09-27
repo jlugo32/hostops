@@ -1,0 +1,18 @@
+{
+  "name": "hostops",
+  "owner": {
+    "name": "Jose Lugo",
+    "url": "https://github.com/jlugo32"
+  },
+  "metadata": {
+    "description": "hostops: server operations for Claude Code"
+  },
+  "plugins": [
+    {
+      "name": "hostops",
+      "source": "./",
+      "description": "Skills and agents for safe server operations through the hostops CLI.",
+      "version": "0.1.0"
+    }
+  ]
+}

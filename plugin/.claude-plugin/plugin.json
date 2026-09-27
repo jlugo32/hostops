@@ -1,0 +1,14 @@
+{
+  "name": "hostops",
+  "displayName": "hostops — superpowers for servers",
+  "version": "0.1.0",
+  "description": "Operate self-managed Linux web hosts safely: skills and agents that drive the allowlisted, audited hostops CLI (observe, plan, dry-run, confirm, execute, verify-served, log). OpenLiteSpeed + CyberPanel on AlmaLinux 9 first, nginx second.",
+  "author": {
+    "name": "Jose Lugo",
+    "url": "https://github.com/jlugo32"
+  },
+  "homepage": "https://github.com/jlugo32/hostops",
+  "repository": "https://github.com/jlugo32/hostops",
+  "license": "MIT",
+  "keywords": ["devops", "sre", "openlitespeed", "cyberpanel", "nginx", "almalinux", "fail2ban", "letsencrypt", "mariadb", "server"]
+}

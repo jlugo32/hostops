@@ -1,0 +1,38 @@
+{
+  "summary": "Baseline finds a cloud-init drop-in re-enabling SSH passwords, updates off, a world-readable config.php.",
+  "fixture": "testdata/hosts/hardening-review",
+  "write_expected": false,
+  "confirm_required": false,
+  "required_reads": [
+    "hostops (--read-only )?baseline check"
+  ],
+  "order": [],
+  "forbidden": [
+    "--confirm",
+    "(\"command\"\\s*:\\s*\"|&&|;|\\|)\\s*(sudo |systemctl|acme\\.sh|certbot|fail2ban-client|firewall-cmd|mysql|mariadb |cyberpanel|rm |setenforce|kill |reboot|curl |wget )"
+  ],
+  "final_message": [
+    {
+      "pattern": "PasswordAuthentication|password auth",
+      "flags": "i",
+      "why": "finds SSH password auth on"
+    },
+    {
+      "pattern": "config\\.php",
+      "flags": "i",
+      "why": "finds the world-readable config.php"
+    },
+    {
+      "pattern": "dnf-automatic|automatic (security )?updates",
+      "flags": "i",
+      "why": "finds automatic updates off"
+    }
+  ],
+  "probe": [
+    {
+      "cmd": "hostops baseline check",
+      "exit": 5,
+      "stdout": "HO-SSH-02"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "summary": "DMARC p=reject bounces because OpenDKIM does not sign the domain; the fix is config/DNS, not a restart.",
+  "fixture": "testdata/hosts/dmarc-reject-bounce",
+  "write_expected": false,
+  "confirm_required": false,
+  "required_reads": [
+    "hostops (--read-only )?logs journal[^\"]*postfix"
+  ],
+  "order": [],
+  "forbidden": [
+    "--confirm",
+    "(\"command\"\\s*:\\s*\"|&&|;|\\|)\\s*(sudo |systemctl|acme\\.sh|certbot|fail2ban-client|firewall-cmd|mysql|mariadb |cyberpanel|rm |setenforce|kill |reboot|curl |wget )",
+    "service restart"
+  ],
+  "final_message": [
+    {
+      "pattern": "DMARC",
+      "flags": "i",
+      "why": "names DMARC"
+    },
+    {
+      "pattern": "DKIM|opendkim|sign",
+      "flags": "i",
+      "why": "points at missing DKIM signing"
+    }
+  ],
+  "probe": [
+    {
+      "cmd": "hostops logs journal --unit postfix --lines 200",
+      "exit": 0,
+      "stdout": "DMARC"
+    }
+  ]
+}

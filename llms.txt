@@ -1,0 +1,20 @@
+# hostops
+
+> Allowlisted, audited server operations for self-managed Linux web hosts, plus a Claude Code plugin that uses it. Methodology: observe → plan → dry-run → confirm → execute → verify-served → log.
+
+Every command is typed; there is no generic run command. Write commands exit 4 unless given `--confirm=<token>` printed by `--dry-run`. Output is JSON when stdout is not a TTY; every document carries a `schema` field.
+
+## Docs
+- [README](https://github.com/jlugo32/hostops/blob/main/README.md): install, commands, exit codes, skills
+- [CLAUDE.md](https://github.com/jlugo32/hostops/blob/main/CLAUDE.md): rules for agents working on or with hostops
+- [Methodology](https://github.com/jlugo32/hostops/blob/main/docs/methodology.md)
+- [Threat model](https://github.com/jlugo32/hostops/blob/main/docs/threat-model.md)
+- [JSON schemas](https://github.com/jlugo32/hostops/tree/main/docs/schema)
+- [ADRs](https://github.com/jlugo32/hostops/tree/main/adr)
+
+## Exit codes
+0 ok, 1 general, 2 permission, 3 validation, 4 confirmation required, 5 verification failed, 6 partial/inconclusive
+
+## Optional
+- [Eval results](https://github.com/jlugo32/hostops/blob/main/evals/RESULTS.md)
+- [Skills](https://github.com/jlugo32/hostops/tree/main/plugin/skills)

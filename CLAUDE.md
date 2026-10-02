@@ -1,7 +1,7 @@
 # hostops — working rules for Claude Code
 
-- Dev path: `/root/projects/hostops/`. Live target: `31.97.43.170` (AlmaLinux 9,
-  CyberPanel, OpenLiteSpeed, PHP 8.5, MariaDB). Sites live in
+- Live target: a single AlmaLinux 9 host (CyberPanel, OpenLiteSpeed, PHP 8.5,
+  MariaDB). Sites live in
   `/home/<domain>/public_html/` and deploy with `deploy-site <name> <domain>`.
 - Tests never need a live server. Anything that touches a real host runs only
   under `HOSTOPS_LIVE=1`, and its test name contains `Live`
